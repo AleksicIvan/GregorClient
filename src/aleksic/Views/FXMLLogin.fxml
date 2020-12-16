@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="login" layoutX="293.0" layoutY="308.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="108.0" text="Login" />
+      <Label layoutX="79.0" layoutY="153.0" text="Korisničko ime" />
+      <Label layoutX="79.0" layoutY="205.0" text="Šifra" />
+      <TextField fx:id="korisnickoIme" layoutX="206.0" layoutY="148.0" prefHeight="17.0" prefWidth="316.0" />
+      <PasswordField fx:id="korisnickaSifra" layoutX="206.0" layoutY="209.0" prefHeight="27.0" prefWidth="316.0" />
+      <Label fx:id="loginError" layoutX="325.0" layoutY="410.0" prefHeight="27.0" prefWidth="44.0" />
+   </children>
+</AnchorPane>

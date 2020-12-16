@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="gornjIgracMeni" alignment="CENTER" layoutX="1.0" prefHeight="201.0" prefWidth="248.0" styleClass="gornjIgrac">
+         <children>
+            <Label fx:id="gornjIgracKorisnickoIme" text="Igrac 1">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" text="20">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></VBox>
+      <VBox fx:id="donjIgracMeni" alignment="CENTER" layoutY="300.0" prefHeight="201.0" prefWidth="248.0" styleClass="donjIgrac">
+         <children>
+            <Label fx:id="donjIgracKorisnickoIme" text="Igrac 2">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" text="20">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children></VBox>
+
+      <HBox fx:id="gornjIgracRedZlatnika" layoutX="241.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
+      <HBox fx:id="gornjIgracRedVitezova" layoutX="241.0" layoutY="100.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
+      <HBox fx:id="gornjIgracRedNapad" alignment="TOP_CENTER" layoutX="241.0" layoutY="200.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
+      <HBox fx:id="donjIgracRedNapad" layoutX="241.0" layoutY="300.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
+      <HBox fx:id="donjIgracRedVitezova" layoutX="241.0" layoutY="400.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
+      <HBox fx:id="donjIgracRedZlatnika" layoutX="241.0" layoutY="500.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
+      <HBox fx:id="gornjiIgracRuka" layoutY="200.0" prefHeight="100.0" prefWidth="241.0" styleClass="gornjIgrac" />
+      <HBox fx:id="donjiIgracRuka" alignment="CENTER" layoutY="500.0" prefHeight="100.0" prefWidth="241.0" styleClass="donjIgrac">
+         <padding>
+            <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+         </padding></HBox>
+
+   </children>
+</Pane>

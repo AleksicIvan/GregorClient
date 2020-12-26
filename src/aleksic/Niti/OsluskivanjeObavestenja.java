@@ -45,7 +45,11 @@ public class OsluskivanjeObavestenja extends Thread {
 //                izvrsi(gto);
             Platform.runLater(() -> {
                 System.out.println("Provera nit promena..." + toi.poruka);
-                opstiGUIKontroler.setToi(toi);
+                try {
+                    opstiGUIKontroler.setToi(toi);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             });
         }
     }

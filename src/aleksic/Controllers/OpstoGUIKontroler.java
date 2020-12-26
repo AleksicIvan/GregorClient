@@ -3,6 +3,7 @@ package aleksic.Controllers;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Views.ViewManager;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -15,7 +16,7 @@ abstract public class OpstoGUIKontroler {
 
     public abstract ViewManager getVm();
 
-    public abstract void setToi(TransferObjekatIgrac toi);
+    public abstract void setToi(TransferObjekatIgrac toi) throws IOException;
 
     public Socket getSoketK() {
         return soketK;

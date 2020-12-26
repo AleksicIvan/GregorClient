@@ -16,10 +16,22 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     private VBox gornjIgracMeni;
 
     @FXML
+    private Label igracNaPotezuGore;
+
+    @FXML
+    private Label fazaPotezaGore;
+
+    @FXML
     private Label gornjIgracKorisnickoIme;
 
     @FXML
     private VBox donjIgracMeni;
+
+    @FXML
+    private Label igracNaPotezuDole;
+
+    @FXML
+    private Label fazaPotezaDole;
 
     @FXML
     private Label donjIgracKorisnickoIme;
@@ -48,6 +60,38 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     @FXML
     private HBox donjiIgracRuka;
 
+    public Label getIgracNaPotezuGore() {
+        return igracNaPotezuGore;
+    }
+
+    public void setIgracNaPotezuGore(Label igracNaPotezuGore) {
+        this.igracNaPotezuGore = igracNaPotezuGore;
+    }
+
+    public Label getIgracNaPotezuDole() {
+        return igracNaPotezuDole;
+    }
+
+    public void setIgracNaPotezuDole(Label igracNaPotezuDole) {
+        this.igracNaPotezuDole = igracNaPotezuDole;
+    }
+
+    public Label getFazaPotezaDole() {
+        return fazaPotezaDole;
+    }
+
+    public void setFazaPotezaDole(Label fazaPotezaDole) {
+        this.fazaPotezaDole = fazaPotezaDole;
+    }
+
+    public Label getFazaPotezaGore() {
+        return fazaPotezaGore;
+    }
+
+    public void setFazaPotezaGore(Label fazaPotezaGore) {
+        this.fazaPotezaGore = fazaPotezaGore;
+    }
+
     public void postaviImeGornjegIgraca (String imeIgraca) {
         gornjIgracKorisnickoIme.setText(imeIgraca);
     }
@@ -56,8 +100,12 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
         donjIgracKorisnickoIme.setText(imeIgraca);
     }
 
-    public void dodajKartuDonjiIgracruka(Node karta) {
+    public void postaviIzvuceneKarteDonjiIgrac(Node karta) {
         donjiIgracRuka.getChildren().add(karta);
+    }
+
+    public void postaviIzvuceneKarteGornjiIgrac(Node karta) {
+        gornjiIgracRuka.getChildren().add(karta);
     }
 
     public FXMLGlavniProzorDocumentController(Socket soketK, ViewManager viewManager, String nazivFxml) {

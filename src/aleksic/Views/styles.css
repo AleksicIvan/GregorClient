@@ -1,17 +1,26 @@
 .gornjIgrac {
-    -fx-border-width: 2px;
-    -fx-border-color: black;
-    -fx-background-color: lightblue;
-}
-
-.donjIgrac {
-    -fx-border-width: 2px;
+    -fx-border-width: 1px;
     -fx-border-color: black;
     -fx-background-color: lightgray;
 }
 
-.karta {
+.donjIgrac {
     -fx-border-width: 1px;
-    -fx-border-color: red;
-    -fx-background-color: blue;
+    -fx-border-color: black;
+    -fx-background-color: white;
+}
+
+.karta-plava {
+    -fx-border-color: black;
+    -fx-background-color: lightblue;
+}
+
+.karta-zlatna {
+    -fx-border-color: black;
+    -fx-background-color: gold;
+}
+
+.karta-pozadina {
+    -fx-border-color: black;
+    -fx-background-color: white;
 }

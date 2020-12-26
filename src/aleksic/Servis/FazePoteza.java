@@ -16,8 +16,17 @@ public class FazePoteza implements Serializable {
 
     @Override
     public String toString() {
-        return "FazePoteza{" +
-                "faza=" + faza.toString() +
-                '}';
+        switch (faza.toString()) {
+            case "IZBACI_ZLATNIK":
+                return "Odigraj zlatnik";
+            case "ODIGRAJ_VITEZA":
+                return "Odigraj viteza";
+            case "NAPAD":
+                return "Napadaj";
+            case "ODBRANA":
+                return "Brani se";
+            default:
+                return "";
+        }
     }
 }

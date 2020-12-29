@@ -1,9 +1,6 @@
 package aleksic.Servis;
 
-import aleksic.Models.Igrac;
-import aleksic.Models.Karta;
-import aleksic.Models.Spil;
-import aleksic.Models.TipKarte;
+import aleksic.Models.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,7 +14,7 @@ public class Igra implements Serializable {
     private List<Igrac> igraci = new ArrayList<>();
     private Date datumIgre;
     private Igrac igracNaPotezu;
-    private FazePoteza fazaPoteza;
+    private Faza fazaPoteza;
     private boolean krajIgre = false;
 
     public Igra(Date datumIgre) {
@@ -80,13 +77,12 @@ public class Igra implements Serializable {
         return igracNaPotezu;
     }
 
-    public FazePoteza vratiFazuPoteza() {
+    public Faza vratiFazuPoteza() {
         return fazaPoteza;
     }
 
     public void postaviFazuPoteza(Faza faza) {
-        fazaPoteza = new FazePoteza(faza);
-        this.fazaPoteza = fazaPoteza;
+        this.fazaPoteza = faza;
     }
 
     public void setIgracNaPotezu(Igrac igracNaPotezu) {
@@ -97,12 +93,27 @@ public class Igra implements Serializable {
         return igracNaPotezu;
     }
 
+    public void odigrajPotezIzbaciZlatnik (Karta odigraniZlatnik) {
+        igracNaPotezu.vratiRuku().remove(odigraniZlatnik);
+        igracNaPotezu.vratiTalon().getRedZlatnika().add(odigraniZlatnik);
+    }
+
+    public void odigrajPotezIzbaciViteza (Karta odigraniVitez) {
+        igracNaPotezu.vratiRuku().remove(odigraniVitez);
+        igracNaPotezu.vratiTalon().getRedVitezova().add(odigraniVitez);
+    }
+
+    public void odigrajPotezNapadniVitezom (Karta odigraniVitez) {
+        igracNaPotezu.vratiTalon().getRedNapad().add(odigraniVitez);
+        igracNaPotezu.vratiTalon().getRedVitezova().remove(odigraniVitez);
+    }
+
     public void odigrajPotez () {
         Scanner scanner = new Scanner(System.in);
         System.out.println("__________________");
-        System.out.println(vratiIgracaNaPotezu().vratiKorisnickoIme() + " je na potezu. Faza igre je " + vratiFazuPoteza().faza.toString());
+        System.out.println(vratiIgracaNaPotezu().vratiKorisnickoIme() + " je na potezu. Faza igre je " + vratiFazuPoteza().toString());
         Karta odigranaKarta = null;
-        if (vratiFazuPoteza().faza.equals(Faza.IZBACI_ZLATNIK)) {
+        if (vratiFazuPoteza().equals(Faza.IZBACI_ZLATNIK)) {
             var igracevaRuka = igracNaPotezu.vratiRuku();
             Predicate<Karta> poTipu = k -> k.vratiTipKarte().equals(TipKarte.ZLATNIK);
             odigranaKarta = igracevaRuka
@@ -139,7 +150,7 @@ public class Igra implements Serializable {
             }
         }
 
-        if (vratiFazuPoteza().faza.equals(Faza.ODIGRAJ_VITEZA)) {
+        if (vratiFazuPoteza().equals(Faza.ODIGRAJ_VITEZA)) {
             var igracevaRuka = igracNaPotezu.vratiRuku();
             Predicate<Karta> poTipu = k -> k.vratiTipKarte().equals(TipKarte.VITEZ);
             // ponoviti dok god ima zlatnika u redu zlatnika i vitezova u ruci
@@ -177,7 +188,7 @@ public class Igra implements Serializable {
             }
         }
 
-        if (vratiFazuPoteza().faza.equals(Faza.NAPAD)) {
+        if (vratiFazuPoteza().equals(Faza.NAPAD)) {
             System.out.println("dosli smo do faze NAPAD");
             var igracevTalon = igracNaPotezu.vratiTalon();
             if (igracevTalon.getRedVitezova().size() != 0) {
@@ -199,7 +210,7 @@ public class Igra implements Serializable {
                 postaviFazuPoteza(Faza.IZBACI_ZLATNIK);
             }
         }
-        if (vratiFazuPoteza().faza.equals(Faza.ODBRANA)) {
+        if (vratiFazuPoteza().equals(Faza.ODBRANA)) {
             System.out.println("dosli smo do faze ODBRANA");
             var igracevTalon = igracNaPotezu.vratiTalon();
             if (igracevTalon.getRedVitezova().size() != 0) {

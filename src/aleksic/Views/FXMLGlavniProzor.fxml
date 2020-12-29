@@ -38,12 +38,12 @@
             <Label fx:id="fazaPotezaDole" />
          </children></VBox>
 
-      <HBox fx:id="gornjIgracRedZlatnika" layoutX="241.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
-      <HBox fx:id="gornjIgracRedVitezova" layoutX="241.0" layoutY="100.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
-      <HBox fx:id="gornjIgracRedNapad" alignment="TOP_CENTER" layoutX="241.0" layoutY="200.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
-      <HBox fx:id="donjIgracRedNapad" layoutX="241.0" layoutY="300.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
-      <HBox fx:id="donjIgracRedVitezova" layoutX="241.0" layoutY="400.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
-      <HBox fx:id="donjIgracRedZlatnika" layoutX="241.0" layoutY="500.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
+      <HBox fx:id="gornjIgracRedZlatnika" alignment="CENTER" layoutX="241.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
+      <HBox fx:id="gornjIgracRedVitezova" alignment="CENTER" layoutX="241.0" layoutY="100.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
+      <HBox fx:id="gornjIgracRedNapad" alignment="CENTER" layoutX="241.0" layoutY="200.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />
+      <HBox fx:id="donjIgracRedNapad" alignment="CENTER" layoutX="241.0" layoutY="300.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
+      <HBox fx:id="donjIgracRedVitezova" alignment="CENTER" layoutX="241.0" layoutY="400.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
+      <HBox fx:id="donjIgracRedZlatnika" alignment="CENTER" layoutX="241.0" layoutY="500.0" prefHeight="100.0" prefWidth="560.0" styleClass="donjIgrac" />
       <HBox fx:id="gornjiIgracRuka" alignment="CENTER" layoutY="200.0" prefHeight="100.0" prefWidth="241.0" styleClass="gornjIgrac" />
       <HBox fx:id="donjiIgracRuka" alignment="CENTER" layoutY="500.0" prefHeight="100.0" prefWidth="241.0" styleClass="donjIgrac">
          <padding>

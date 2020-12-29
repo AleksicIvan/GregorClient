@@ -1,6 +1,6 @@
 package aleksic.Controllers.Osluskivaci;
 
-import aleksic.Views.CardTestComponent;
+import aleksic.Komponente.CardTestComponent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 

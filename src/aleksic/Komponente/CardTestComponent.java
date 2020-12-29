@@ -1,9 +1,10 @@
-package aleksic.Views;
+package aleksic.Komponente;
 
-import aleksic.Controllers.FXMLCardTest;
+import aleksic.Controllers.KontrolerGUIGlavniprozor;
+import aleksic.Controllers.OpstoGUIKontroler;
 import aleksic.Models.Igrac;
 import aleksic.Models.Karta;
-import aleksic.Models.TipKarte;
+import aleksic.Servis.Faza;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Views.ViewManager;
 import javafx.fxml.FXML;
@@ -17,6 +18,11 @@ public class CardTestComponent extends VBox {
     FXMLCardTest fxmlCardTest;
     ViewManager vm;
     TransferObjekatIgrac toi;
+    Karta trenutnaKarta;
+    KontrolerGUIGlavniprozor guiKontroler;
+    Igrac gornjiIgrac;
+    Igrac donjiIgrac;
+    String pozicijaIgraca;
     boolean pokaziKartu;
 
     @FXML
@@ -32,9 +38,6 @@ public class CardTestComponent extends VBox {
     Label odbrana;
 
     public CardTestComponent() throws IOException {
-        this.fxmlCardTest = fxmlCardTest;
-//        this.vm = viewManager;
-//        this.soketK = viewManager.getSoketK();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
                 "FXMLCardTest.fxml"));
         fxmlLoader.setRoot(this);
@@ -46,6 +49,11 @@ public class CardTestComponent extends VBox {
             throw new RuntimeException(exception);
         }
     }
+
+    public void setGuiKontroler (KontrolerGUIGlavniprozor guiKontroler) {
+        this.guiKontroler = guiKontroler;
+    }
+
 
     public Label getNapad() {
         return napad;
@@ -80,10 +88,35 @@ public class CardTestComponent extends VBox {
     }
 
     public void cardTestOnClick () throws IOException {
-        System.out.println("Card clicked!");
+        switch (trenutnaKarta.vratiTipKarte()) {
+            case ZLATNIK:
+                guiKontroler.getVm().getToi().igra.postaviFazuPoteza(Faza.ODIGRAJ_VITEZA);
+                guiKontroler.getVm().getToi().igra.odigrajPotezIzbaciZlatnik(trenutnaKarta);
+                guiKontroler.getFxml().dodajZlatnikDonjiIgrac(this);
+                guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(donjiIgrac, gornjiIgrac, Faza.ODIGRAJ_VITEZA);
+//                guiKontroler.getVm().pozivSO("odigrajZlatnika");
+                break;
+            case VITEZ:
+                if (guiKontroler.getVm().getToi().igra.vratiFazuPoteza().equals(Faza.ODIGRAJ_VITEZA)) {
+                    guiKontroler.getVm().getToi().igra.postaviFazuPoteza(Faza.NAPAD);
+                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(donjiIgrac, gornjiIgrac, Faza.NAPAD);
+                    guiKontroler.getVm().getToi().igra.odigrajPotezIzbaciViteza(trenutnaKarta);
+                    guiKontroler.getFxml().dodajVitezaDonjiIgrac(this);
+//                    guiKontroler.getVm().pozivSO("odigrajViteza");
+                } else {
+                    guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
+//                    guiKontroler.getVm().getToi().igra.postaviFazuPoteza(Faza.NAPAD);
+                    guiKontroler.getVm().getToi().igra.odigrajPotezNapadniVitezom(trenutnaKarta);
+//                    guiKontroler.getVm().pozivSO("napadniVitezom");
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public void prikazikartu(Karta karta, TransferObjekatIgrac toi) {
+        trenutnaKarta = karta;
         Igrac ulogovaniIgrac = toi.igr;
         Igrac igracNaPotezu = toi.igra.vratiIgracaNaPotezu();
 
@@ -111,7 +144,7 @@ public class CardTestComponent extends VBox {
                     System.out.println("Karta iz prikazikartu ako nije na potezu ulogovani igrac: " + karta.toString());
                     karta.setIsDisabled(true);
                     kartaVBox.setDisable(true);
-                    return;
+                    break;
                 }
             case ZLATNIK:
                 this.getStyleClass().removeAll();
@@ -125,7 +158,7 @@ public class CardTestComponent extends VBox {
                     System.out.println("Karta iz prikazikartu ako nije na potezu ulogovani igrac: " + karta.toString());
                     karta.setIsDisabled(true);
                     kartaVBox.setDisable(true);
-                    return;
+                    break;
                 }
             default:
                 this.getStyleClass().removeAll();
@@ -133,13 +166,11 @@ public class CardTestComponent extends VBox {
         }
     }
 
-    //    @Override
-//    public ViewManager getVm() {
-//        return vm;
-//    }
-//
-//    @Override
-//    public void setToi(TransferObjekatIgrac toi) {
-//        this.toi = toi;
-//    }
+    public void setGornjiIgrac(Igrac igrac) {
+        gornjiIgrac = igrac;
+    }
+
+    public void setDonjiIgrac(Igrac igrac) {
+        donjiIgrac = igrac;
+    }
 }

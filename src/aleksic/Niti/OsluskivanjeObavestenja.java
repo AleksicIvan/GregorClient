@@ -1,6 +1,7 @@
 package aleksic.Niti;
 
 import aleksic.Controllers.OpstoGUIKontroler;
+import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import javafx.application.Platform;
 
@@ -19,7 +20,7 @@ public class OsluskivanjeObavestenja extends Thread {
         start();
     }
 
-    public static OsluskivanjeObavestenja getInstance() throws IOException {
+    public static synchronized OsluskivanjeObavestenja getInstance() throws IOException {
         if (instance == null) {
             instance = new OsluskivanjeObavestenja();
         }
@@ -36,6 +37,8 @@ public class OsluskivanjeObavestenja extends Thread {
         while (true) {
             try {
                 toi = (TransferObjekatIgrac) new ObjectInputStream(opstiGUIKontroler.getSoketK().getInputStream()).readObject();
+//                toi = (TransferObjekatIgrac) SocketSingleton.getInstance().getIn().readObject();
+//                toi = (TransferObjekatIgrac) opstiGUIKontroler.getVm().getIn().readObject();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -44,7 +47,7 @@ public class OsluskivanjeObavestenja extends Thread {
 
 //                izvrsi(gto);
             Platform.runLater(() -> {
-                System.out.println("Provera nit promena..." + toi.poruka);
+                System.out.println("Provera nit promena...");
                 try {
                     opstiGUIKontroler.setToi(toi);
                 } catch (IOException e) {

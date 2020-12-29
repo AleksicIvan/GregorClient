@@ -1,5 +1,6 @@
 package aleksic.Controllers;
 
+import aleksic.Models.Karta;
 import aleksic.Views.ViewManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
 
 public class FXMLGlavniProzorDocumentController extends BaseController {
 
@@ -60,6 +62,8 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     @FXML
     private HBox donjiIgracRuka;
 
+
+
     public Label getIgracNaPotezuGore() {
         return igracNaPotezuGore;
     }
@@ -106,6 +110,30 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
 
     public void postaviIzvuceneKarteGornjiIgrac(Node karta) {
         gornjiIgracRuka.getChildren().add(karta);
+    }
+
+    public void dodajZlatnikDonjiIgrac(Node karta) {
+        donjIgracRedZlatnika.getChildren().add(karta);
+    }
+
+    public void dodajZlatnikGornjiIgrac(Node karta) {
+        gornjIgracRedZlatnika.getChildren().add(karta);
+    }
+
+    public void dodajVitezaDonjiIgrac(Node karta) {
+        donjIgracRedVitezova.getChildren().add(karta);
+    }
+
+    public void dodajVitezaGornjiIgrac(Node karta) {
+        gornjIgracRedVitezova.getChildren().add(karta);
+    }
+
+    public void dodajVitezaUNapadDonjiIgrac(Node karta) {
+        donjIgracRedVitezova.getChildren().add(karta);
+    }
+
+    public void dodajVitezaUNapadGornjiIgrac(Node karta) {
+        gornjIgracRedVitezova.getChildren().add(karta);
     }
 
     public FXMLGlavniProzorDocumentController(Socket soketK, ViewManager viewManager, String nazivFxml) {

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<fx:root fx:id="kartaVBox" alignment="CENTER" minHeight="50.0" minWidth="20.0" onMouseClicked="#cardTestOnClick" prefHeight="50.0" prefWidth="35.0" styleClass="karta" stylesheets="@styles.css" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="kartaVBox" alignment="CENTER" minHeight="50.0" minWidth="20.0" onMouseClicked="#cardTestOnClick" prefHeight="50.0" prefWidth="35.0" styleClass="karta" stylesheets="@../Views/styles.css" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <Label fx:id="tipKarte">
       <font>
          <Font size="15.0" />

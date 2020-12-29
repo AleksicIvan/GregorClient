@@ -38,6 +38,7 @@ public class ViewManager {
 
     public void pozivSO(String nazivSO) {
         toi.nazivOperacije = nazivSO;
+
         try {
             out = new ObjectOutputStream(soketK.getOutputStream());
             in =  new ObjectInputStream(soketK.getInputStream());

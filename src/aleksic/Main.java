@@ -12,9 +12,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Socket soketK = new Socket("127.0.0.1", 9000);
+//        Socket soketK = new Socket("127.0.0.1", 9000);
 
-        ViewManager viewManager = new ViewManager(soketK);
+        ViewManager viewManager = new ViewManager();
         viewManager.prikaziLogin();
     }
 

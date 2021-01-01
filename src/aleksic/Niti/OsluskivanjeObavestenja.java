@@ -36,8 +36,8 @@ public class OsluskivanjeObavestenja extends Thread {
     public void run() {
         while (true) {
             try {
-                toi = (TransferObjekatIgrac) new ObjectInputStream(opstiGUIKontroler.getSoketK().getInputStream()).readObject();
-//                toi = (TransferObjekatIgrac) SocketSingleton.getInstance().getIn().readObject();
+//                toi = (TransferObjekatIgrac) new ObjectInputStream(opstiGUIKontroler.getSoketK().getInputStream()).readObject();
+                toi = (TransferObjekatIgrac) SocketSingleton.getInstance().getIn().readObject();
 //                toi = (TransferObjekatIgrac) opstiGUIKontroler.getVm().getIn().readObject();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -47,7 +47,17 @@ public class OsluskivanjeObavestenja extends Thread {
 
 //                izvrsi(gto);
             Platform.runLater(() -> {
-                System.out.println("Provera nit promena...");
+                System.out.println("Provera nit promena..." + toi.poruka);
+                System.out.println("toi.indeks..." + toi.indeks);
+                if (toi.prviIgrac != null) {
+                    System.out.println("toi.prviigrac..." + toi.prviIgrac.vratiKorisnickoIme());
+                }
+                if (toi.drugiIgrac != null) {
+                    System.out.println("toi.drugiigrac..." + toi.drugiIgrac.vratiKorisnickoIme());
+                }
+                if (toi.brojigraca != null) {
+                    System.out.println("toi.listaIgraca.sz..." + toi.brojigraca);
+                }
                 try {
                     opstiGUIKontroler.setToi(toi);
                 } catch (IOException e) {

@@ -118,11 +118,11 @@ public class CardTestComponent extends VBox {
     public void prikazikartu(Karta karta, TransferObjekatIgrac toi) {
         trenutnaKarta = karta;
         Igrac ulogovaniIgrac = toi.igr;
-        Igrac igracNaPotezu = toi.igra.vratiIgracaNaPotezu();
+        Igrac igracNaPotezu = toi.igracNaPotezu;
 
-        System.out.println("ime prvog igraca je: " + ulogovaniIgrac.vratiKorisnickoIme());
-        System.out.println("ime igracNaPotezu je " + igracNaPotezu.vratiKorisnickoIme());
-        System.out.println("is equal " + ulogovaniIgrac.vratiKorisnickoIme().equals(igracNaPotezu.vratiKorisnickoIme()));
+//        System.out.println("ime prvog igraca je: " + ulogovaniIgrac.vratiKorisnickoIme());
+//        System.out.println("ime igracNaPotezu je " + igracNaPotezu.vratiKorisnickoIme());
+//        System.out.println("is equal " + ulogovaniIgrac.vratiKorisnickoIme().equals(igracNaPotezu.vratiKorisnickoIme()));
 
         if (karta.isPokaziKartu() == false) {
             this.getStyleClass().add("karta-pozadina");
@@ -141,7 +141,6 @@ public class CardTestComponent extends VBox {
                 if (ulogovaniIgrac.vratiKorisnickoIme().equals(igracNaPotezu.vratiKorisnickoIme())) {
                     break;
                 } else {
-                    System.out.println("Karta iz prikazikartu ako nije na potezu ulogovani igrac: " + karta.toString());
                     karta.setIsDisabled(true);
                     kartaVBox.setDisable(true);
                     break;
@@ -155,7 +154,6 @@ public class CardTestComponent extends VBox {
                 if (ulogovaniIgrac.vratiKorisnickoIme().equals(igracNaPotezu.vratiKorisnickoIme())) {
                     break;
                 } else {
-                    System.out.println("Karta iz prikazikartu ako nije na potezu ulogovani igrac: " + karta.toString());
                     karta.setIsDisabled(true);
                     kartaVBox.setDisable(true);
                     break;

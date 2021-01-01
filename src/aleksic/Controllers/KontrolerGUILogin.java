@@ -18,6 +18,8 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
     TransferObjekatIgrac toi;
 
     public KontrolerGUILogin(FXMLLoginController loginController, ViewManager viewManager) throws IOException {
+        OsluskivanjeObavestenja osluskivacObavestenja = OsluskivanjeObavestenja.getInstance();
+        osluskivacObavestenja.setOpstiGUIKontroler(this);
         fxmlLoginController = loginController;
         this.vm = viewManager;
 //        this.toi = viewManager.getToi();
@@ -31,8 +33,7 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
         vm.getToi().igr = igrac;
 //        fxmlLoginController.gregorIgra.dodajIgraca(igrac);
         vm.pozivSO("kreirajIgraca");
-        OsluskivanjeObavestenja osluskivacObavestenja = OsluskivanjeObavestenja.getInstance();
-        osluskivacObavestenja.setOpstiGUIKontroler(this);
+
         vm.prikaziMain();
         vm.zatvoriPozornicu(getLoginStage());
     }

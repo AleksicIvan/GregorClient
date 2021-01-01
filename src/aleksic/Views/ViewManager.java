@@ -3,6 +3,7 @@ package aleksic.Views;
 import aleksic.Controllers.BaseController;
 import aleksic.Controllers.FXMLGlavniProzorDocumentController;
 import aleksic.Controllers.FXMLLoginController;
+import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,33 +31,37 @@ public class ViewManager {
         return in;
     }
 
-    public ViewManager(Socket soketK) throws IOException {
+    public ViewManager() throws IOException {
+        soketK = SocketSingleton.getInstance().getSoketK();
+        in = SocketSingleton.getInstance().getIn();
+        out = SocketSingleton.getInstance().getOut();
+        out = SocketSingleton.getInstance().getOut();
         toi = new TransferObjekatIgrac();
-        this.soketK = soketK;
         pozivSO("init");
     }
 
     public void pozivSO(String nazivSO) {
         toi.nazivOperacije = nazivSO;
 
+//        try {
+//            out = new ObjectOutputStream(soketK.getOutputStream());
+//            in =  new ObjectInputStream(soketK.getInputStream());
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+
         try {
-            out = new ObjectOutputStream(soketK.getOutputStream());
-            in =  new ObjectInputStream(soketK.getInputStream());
+            System.out.println(toi);
+            SocketSingleton.getInstance().getOut().writeObject(toi);
+
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        try {
-            out.writeObject(toi);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        try {
-            setToi((TransferObjekatIgrac) in.readObject());
-        } catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+//        try {
+//            setToi((TransferObjekatIgrac) in.readObject());
+//        } catch (IOException | ClassNotFoundException ex) {
+//            ex.printStackTrace();
+//        }
     }
 
     public Scene getCurrentScene() {

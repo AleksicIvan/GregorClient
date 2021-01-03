@@ -24,3 +24,8 @@
     -fx-border-color: black;
     -fx-background-color: white;
 }
+
+.iskoriscena-karta {
+    -fx-border-width: 2px;
+    -fx-border-color: red;
+}

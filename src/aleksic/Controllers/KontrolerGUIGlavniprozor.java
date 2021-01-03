@@ -61,6 +61,10 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         this.vm = viewManager;
         TransferObjekatIgrac toi = viewManager.getToi();
         fxml.postaviImeDonjegIgraca(toi.igr.vratiKorisnickoIme());
+        if (toi.igra != null && toi.brojigraca == 0) {
+            fxml.postaviImeGornjegIgraca("Čeka se igrač...");
+        }
+
         if (toi.igra != null && toi.brojigraca == 1) {
             Igrac ulogovaniIgrac = toi.igr;
             Igrac stariIgrac = toi.igra.getIgraci().get(0);
@@ -78,8 +82,6 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
 //            for (Karta k : rukaDonjiIgrac) {
 //                setRukuDonjegIgraca(k, toi, ulogovaniIgrac, stariIgrac);
 //            }
-        } else {
-            fxml.postaviImeGornjegIgraca("Čeka se igrač...");
         }
     }
 
@@ -91,29 +93,29 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
                 Igrac prviIgrac = toi.prviIgrac;
                 Igrac drugiIgrac = toi.drugiIgrac;
                 if (!drugiIgrac.vratiKorisnickoIme().equals(toi.igr.vratiKorisnickoIme())) {
-                    // ne treba update za vec ulogovanog - drugog igraca
                     fxml.postaviImeDonjegIgraca(prviIgrac.vratiKorisnickoIme());
                     fxml.postaviImeGornjegIgraca(drugiIgrac.vratiKorisnickoIme());
                     setIgracNaPotezuIfazaPotezaIndikatore(toi.igracNaPotezu, toi.drugiIgrac, toi.fazaPoteza);
                     List<Karta> rukaGornjiIgrac = toi.rukaDrugogIgraca;
                     for (Karta k : rukaGornjiIgrac) {
-                        setRukuGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac);
+                        setRukuGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
                     }
                     List<Karta> rukaDonjiIgrac = toi.rukaPrvogIgraca;
                     for (Karta k : rukaDonjiIgrac) {
-                        setRukuDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac);
+                        setRukuDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
                     }
                 } else {
+                    // update za vec ulogovanog - drugog igraca
                     fxml.postaviImeDonjegIgraca(drugiIgrac.vratiKorisnickoIme());
                     fxml.postaviImeGornjegIgraca(prviIgrac.vratiKorisnickoIme());
                     setIgracNaPotezuIfazaPotezaIndikatore(toi.igracNaPotezu, toi.prviIgrac, toi.fazaPoteza);
                     List<Karta> rukaGornjiIgrac = toi.rukaPrvogIgraca;
                     for (Karta k : rukaGornjiIgrac) {
-                        setRukuGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac);
+                        setRukuGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
                     }
                     List<Karta> rukaDonjiIgrac = toi.rukaDrugogIgraca;
                     for (Karta k : rukaDonjiIgrac) {
-                        setRukuDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac);
+                        setRukuDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "drugiIgrac");
                     }
                 }
             } else {
@@ -121,40 +123,111 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             }
         }
 
-        if (toi.nazivOperacije.equals("odigrajZlatnika")) {
-            Igrac stariIgrac = toi.igra.getIgraci().get(0);
-            vm.getToi().igr = stariIgrac;
-            fxml.postaviImeGornjegIgraca(toi.igra.getIgraci().get(1).vratiKorisnickoIme());
-            setIgracNaPotezuIfazaPotezaIndikatore(toi.igra.getIgracNaPotezu(), toi.igra.getIgraci().get(1), toi.igra.vratiFazuPoteza());
-            List<Karta> rukaGornjiIgrac = toi.igra.getIgraci().get(1).vratiRuku();
-            for (Karta k : rukaGornjiIgrac) {
-                setRukuGornjegIgraca(k, toi, toi.igra.getIgraci().get(1), toi.igra.getIgraci().get(0));
-            }
-            List<Karta> rukaDonjiIgrac = toi.igra.getIgraci().get(0).vratiRuku();
-            for (Karta k : rukaDonjiIgrac) {
-                setRukuDonjegIgraca(k, toi, toi.igra.getIgraci().get(0), toi.igra.getIgraci().get(1));
-            }
-            List<Karta> zlatniciGornjiIgrac = toi.igra.getIgraci().get(1).vratiTalon().getRedZlatnika();
-            for (Karta k : zlatniciGornjiIgrac) {
-                // postavi zlatnike red gornjem igracu
-                setZlatnikeGornjegIgraca(k, toi, toi.igra.getIgraci().get(0), toi.igra.getIgraci().get(1));
-            }
-            List<Karta> vitezoviGornjiIgrac = toi.igra.getIgraci().get(1).vratiTalon().getRedVitezova();
-            for (Karta k : vitezoviGornjiIgrac) {
-                // postavi viteove red gornjem igracu
-                setVitezoveGornjegIgraca(k, toi, toi.igra.getIgraci().get(0), toi.igra.getIgraci().get(1));
-            }
-            List<Karta> zlatniciDonjiIgrac = stariIgrac.vratiTalon().getRedZlatnika();
-            for (Karta k : zlatniciGornjiIgrac) {
-                // postavi zlatnike red gornjem igracu
-                setZlatnikeDonjegIgraca(k, toi, toi.igra.getIgraci().get(0), toi.igra.getIgraci().get(1));
-            }
-            List<Karta> vitezoviDonjiIgrac = stariIgrac.vratiTalon().getRedVitezova();
-            for (Karta k : vitezoviGornjiIgrac) {
-                // postavi viteove red gornjem igracu
-                setVitezoveDonjegIgraca(k, toi, toi.igra.getIgraci().get(0), toi.igra.getIgraci().get(1));
-            }
+        if (toi.nazivOperacije.equals("odigrajZlatnik")) {
+            // ko je odigrao potez - prvi ili drugi?
+            if (toi.igracNaPotezu.vratiKorisnickoIme().equals(toi.prviIgrac.vratiKorisnickoIme())) {
+                System.out.println("prvi igrac je odigrao zlatnik");
+//                Igrac stariIgrac = toi.prviIgrac;
+//            fxml.postaviImeGornjegIgraca(toi.igra.getIgraci().get(1).vratiKorisnickoIme());
+                setIgracNaPotezuIfazaPotezaIndikatore(toi.igracNaPotezu, toi.prviIgrac, toi.fazaPoteza);
+                List<Karta> rukaGornjiIgrac = toi.rukaPrvogIgraca;
+                fxml.resetujRukuGornjegIgraca();
+                fxml.resetujRukuDonjegIgraca();
+                fxml.resetRedZlatnikaGornjiIgrac();
+                fxml.resetRedVitezovaGornjiIgrac();
+                fxml.resetRedZlatnikaDonjiIgrac();
+                fxml.resetRedZlatnikaDonjiIgrac();
 
+                for (Karta k : rukaGornjiIgrac) {
+                    setRukuGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
+                }
+                List<Karta> rukaDonjiIgrac = toi.rukaDrugogIgraca;
+                for (Karta k : rukaDonjiIgrac) {
+                    setRukuDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
+                }
+                List<Karta> zlatniciGornjiIgrac = toi.talonPrvogIgraca.getRedZlatnika();
+                for (Karta k : zlatniciGornjiIgrac) {
+                    // postavi zlatnike red gornjem igracu
+                    setZlatnikeGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
+                }
+                List<Karta> vitezoviGornjiIgrac = toi.talonPrvogIgraca.getRedVitezova();
+                for (Karta k : vitezoviGornjiIgrac) {
+                    // postavi viteove red gornjem igracu
+                    setVitezoveGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
+                }
+                List<Karta> zlatniciDonjiIgrac = toi.talonDrugogIgraca.getRedZlatnika();
+                for (Karta k : zlatniciDonjiIgrac) {
+                    // postavi zlatnike red gornjem igracu
+                    setZlatnikeDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
+                }
+                List<Karta> vitezoviDonjiIgrac = toi.talonDrugogIgraca.getRedVitezova();
+                for (Karta k : vitezoviDonjiIgrac) {
+                    // postavi viteove red gornjem igracu
+                    setVitezoveDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
+                }
+            } else {
+                System.out.println("drugi igrac je odigrao zlatnik");
+
+                fxml.resetujRukuGornjegIgraca();
+                fxml.resetujRukuDonjegIgraca();
+                fxml.resetRedZlatnikaGornjiIgrac();
+                fxml.resetRedVitezovaGornjiIgrac();
+                fxml.resetRedZlatnikaDonjiIgrac();
+                fxml.resetRedZlatnikaDonjiIgrac();
+                setIgracNaPotezuIfazaPotezaIndikatore(toi.igracNaPotezu, toi.drugiIgrac, toi.fazaPoteza);
+
+
+                List<Karta> rukaGornjiIgrac = toi.rukaDrugogIgraca;
+                for (Karta k : rukaGornjiIgrac) {
+                    setRukuGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+                List<Karta> rukaDonjiIgrac = toi.rukaPrvogIgraca;
+                for (Karta k : rukaDonjiIgrac) {
+                    setRukuDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+                List<Karta> zlatniciGornjiIgrac = toi.talonDrugogIgraca.getRedZlatnika();
+                for (Karta k : zlatniciGornjiIgrac) {
+                    // postavi zlatnike red gornjem igracu
+                    setZlatnikeGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+                List<Karta> vitezoviGornjiIgrac = toi.talonDrugogIgraca.getRedVitezova();
+                for (Karta k : vitezoviGornjiIgrac) {
+                    // postavi viteove red gornjem igracu
+                    setVitezoveGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+                List<Karta> zlatniciDonjiIgrac = toi.talonPrvogIgraca.getRedZlatnika();
+                for (Karta k : zlatniciDonjiIgrac) {
+                    // postavi zlatnike red gornjem igracu
+                    setZlatnikeDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+                List<Karta> vitezoviDonjiIgrac = toi.talonPrvogIgraca.getRedVitezova();
+                for (Karta k : vitezoviDonjiIgrac) {
+                    // postavi viteove red gornjem igracu
+                    setVitezoveDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+            }
+        }
+
+        if (toi.nazivOperacije.equals("plati")) {
+            System.out.println("placen je zlatnik");
+            fxml.resetRedZlatnikaGornjiIgrac();
+
+            if (toi.igracNaPotezu.vratiKorisnickoIme().equals(toi.prviIgrac.vratiKorisnickoIme())) {
+                // prvi
+                List<Karta> zlatniciGornjiIgrac = toi.talonPrvogIgraca.getRedZlatnika();
+                for (Karta k : zlatniciGornjiIgrac) {
+                    // postavi zlatnike red gornjem igracu
+
+                    setZlatnikeGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
+                }
+            } else {
+                // drugi
+                List<Karta> zlatniciGornjiIgrac = toi.talonDrugogIgraca.getRedZlatnika();
+                for (Karta k : zlatniciGornjiIgrac) {
+                    // postavi zlatnike red gornjem igracu
+                    setZlatnikeGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
+                }
+            }
         }
     }
 
@@ -163,62 +236,75 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         return vm;
     }
 
-    private void setRukuGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac) throws IOException {
+    private void setRukuGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
+        kontrolerCardTest.setIgracNaPotezu(igracNaPotezu);
         k.setPokaziKartu(false);
         kontrolerCardTest.prikazikartu(k, toi);
         fxml.postaviIzvuceneKarteGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setRukuDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac) throws IOException {
+    private void setRukuDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
-        k.setIsDisabled(false);
+        kontrolerCardTest.setIgracNaPotezu(igracNaPotezu);
+        if (igracNaPotezu == "donjiIgrac") {
+            k.setIsDisabled(false);
+        } else {
+            k.setIsDisabled(true);
+        }
+        k.setPokaziKartu(true);
         kontrolerCardTest.prikazikartu(k, toi);
         fxml.postaviIzvuceneKarteDonjiIgrac(kontrolerCardTest);
     }
 
-    private void setZlatnikeGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac) throws IOException {
+    private void setZlatnikeGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
-        k.setPokaziKartu(false);
+        kontrolerCardTest.setIgracNaPotezu(igracNaPotezu);
+        k.setPokaziKartu(true);
+        k.setIsDisabled(true);
+        kontrolerCardTest.setDisable(true);
         kontrolerCardTest.prikazikartu(k, toi);
         fxml.dodajZlatnikGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setVitezoveGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac) throws IOException {
+    private void setVitezoveGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
-        k.setPokaziKartu(false);
+        kontrolerCardTest.setIgracNaPotezu(igracNaPotezu);
+        k.setPokaziKartu(true);
+        k.setIsDisabled(true);
+        kontrolerCardTest.setDisable(true);
         kontrolerCardTest.prikazikartu(k, toi);
         fxml.dodajVitezaGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setZlatnikeDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac) throws IOException {
+    private void setZlatnikeDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
-        k.setPokaziKartu(false);
+        k.setPokaziKartu(true);
         kontrolerCardTest.prikazikartu(k, toi);
         fxml.dodajZlatnikDonjiIgrac(kontrolerCardTest);
     }
 
-    private void setVitezoveDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac) throws IOException {
+    private void setVitezoveDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
-        k.setPokaziKartu(false);
+        k.setPokaziKartu(true);
         kontrolerCardTest.prikazikartu(k, toi);
         fxml.dodajZlatnikDonjiIgrac(kontrolerCardTest);
     }

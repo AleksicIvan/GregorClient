@@ -112,6 +112,30 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
         gornjiIgracRuka.getChildren().add(karta);
     }
 
+    public void resetujRukuGornjegIgraca () {
+        gornjiIgracRuka.getChildren().clear();
+    }
+
+    public void resetujRukuDonjegIgraca () {
+        donjiIgracRuka.getChildren().clear();
+    }
+
+    public void resetRedZlatnikaGornjiIgrac () {
+        gornjIgracRedZlatnika.getChildren().clear();
+    }
+
+    public void resetRedZlatnikaDonjiIgrac () {
+        donjIgracRedZlatnika.getChildren().clear();
+    }
+
+    public void resetRedVitezovaGornjiIgrac () {
+        gornjIgracRedVitezova.getChildren().clear();
+    }
+
+    public void resetRedvitezovaDonjiIgrac () {
+        donjIgracRedVitezova.getChildren().clear();
+    }
+
     public void dodajZlatnikDonjiIgrac(Node karta) {
         donjIgracRedZlatnika.getChildren().add(karta);
     }
@@ -134,6 +158,102 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
 
     public void dodajVitezaUNapadGornjiIgrac(Node karta) {
         gornjIgracRedVitezova.getChildren().add(karta);
+    }
+
+    public VBox getGornjIgracMeni() {
+        return gornjIgracMeni;
+    }
+
+    public void setGornjIgracMeni(VBox gornjIgracMeni) {
+        this.gornjIgracMeni = gornjIgracMeni;
+    }
+
+    public Label getGornjIgracKorisnickoIme() {
+        return gornjIgracKorisnickoIme;
+    }
+
+    public void setGornjIgracKorisnickoIme(Label gornjIgracKorisnickoIme) {
+        this.gornjIgracKorisnickoIme = gornjIgracKorisnickoIme;
+    }
+
+    public VBox getDonjIgracMeni() {
+        return donjIgracMeni;
+    }
+
+    public void setDonjIgracMeni(VBox donjIgracMeni) {
+        this.donjIgracMeni = donjIgracMeni;
+    }
+
+    public Label getDonjIgracKorisnickoIme() {
+        return donjIgracKorisnickoIme;
+    }
+
+    public void setDonjIgracKorisnickoIme(Label donjIgracKorisnickoIme) {
+        this.donjIgracKorisnickoIme = donjIgracKorisnickoIme;
+    }
+
+    public HBox getGornjIgracRedZlatnika() {
+        return gornjIgracRedZlatnika;
+    }
+
+    public void setGornjIgracRedZlatnika(HBox gornjIgracRedZlatnika) {
+        this.gornjIgracRedZlatnika = gornjIgracRedZlatnika;
+    }
+
+    public HBox getGornjIgracRedVitezova() {
+        return gornjIgracRedVitezova;
+    }
+
+    public void setGornjIgracRedVitezova(HBox gornjIgracRedVitezova) {
+        this.gornjIgracRedVitezova = gornjIgracRedVitezova;
+    }
+
+    public HBox getGornjIgracRedNapad() {
+        return gornjIgracRedNapad;
+    }
+
+    public void setGornjIgracRedNapad(HBox gornjIgracRedNapad) {
+        this.gornjIgracRedNapad = gornjIgracRedNapad;
+    }
+
+    public HBox getDonjIgracRedNapad() {
+        return donjIgracRedNapad;
+    }
+
+    public void setDonjIgracRedNapad(HBox donjIgracRedNapad) {
+        this.donjIgracRedNapad = donjIgracRedNapad;
+    }
+
+    public HBox getDonjIgracRedVitezova() {
+        return donjIgracRedVitezova;
+    }
+
+    public void setDonjIgracRedVitezova(HBox donjIgracRedVitezova) {
+        this.donjIgracRedVitezova = donjIgracRedVitezova;
+    }
+
+    public HBox getDonjIgracRedZlatnika() {
+        return donjIgracRedZlatnika;
+    }
+
+    public void setDonjIgracRedZlatnika(HBox donjIgracRedZlatnika) {
+        this.donjIgracRedZlatnika = donjIgracRedZlatnika;
+    }
+
+    public HBox getGornjiIgracRuka() {
+        return gornjiIgracRuka;
+    }
+
+    public void setGornjiIgracRuka(HBox gornjiIgracRuka) {
+        this.gornjiIgracRuka = gornjiIgracRuka;
+    }
+
+    public HBox getDonjiIgracRuka() {
+        return donjiIgracRuka;
+    }
+
+    public void setDonjiIgracRuka(HBox donjiIgracRuka) {
+        this.donjiIgracRuka = donjiIgracRuka;
     }
 
     public FXMLGlavniProzorDocumentController(Socket soketK, ViewManager viewManager, String nazivFxml) {

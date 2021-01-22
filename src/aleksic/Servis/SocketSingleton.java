@@ -12,7 +12,7 @@ public class SocketSingleton {
     private ObjectInputStream in;
 
     private SocketSingleton() throws IOException {
-        soketK = new Socket("127.0.0.1", 9000);
+        soketK = new Socket("127.0.0.1", 9001);
         out = new ObjectOutputStream(soketK.getOutputStream());
         in = new ObjectInputStream(soketK.getInputStream());
     }

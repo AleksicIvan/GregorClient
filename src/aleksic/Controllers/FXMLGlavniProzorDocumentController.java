@@ -112,6 +112,14 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
         gornjiIgracRuka.getChildren().add(karta);
     }
 
+    public void resetujNapadGornjegIgraca () {
+        gornjIgracRedNapad.getChildren().clear();
+    }
+
+    public void resetujNapadDonjegIgraca () {
+        donjIgracRedNapad.getChildren().clear();
+    }
+
     public void resetujRukuGornjegIgraca () {
         gornjiIgracRuka.getChildren().clear();
     }
@@ -153,11 +161,11 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     }
 
     public void dodajVitezaUNapadDonjiIgrac(Node karta) {
-        donjIgracRedVitezova.getChildren().add(karta);
+        donjIgracRedNapad.getChildren().add(karta);
     }
 
     public void dodajVitezaUNapadGornjiIgrac(Node karta) {
-        gornjIgracRedVitezova.getChildren().add(karta);
+        gornjIgracRedNapad.getChildren().add(karta);
     }
 
     public VBox getGornjIgracMeni() {

@@ -66,6 +66,7 @@ public class OsluskivanjeObavestenja extends Thread {
 //                    if (toi.rukaDrugogIgraca != null) {
 //                        System.out.println("ruka drugog igraca pred setToi: " + toi.rukaDrugogIgraca.size());
 //                    }
+                    System.out.println("jedi govna");
                     opstiGUIKontroler.setToi(toi);
                 } catch (IOException e) {
                     e.printStackTrace();

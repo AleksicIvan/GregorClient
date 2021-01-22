@@ -31,6 +31,7 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
         System.out.println("Login action initiated!");
         Igrac igrac = new Igrac(fxmlLoginController.korisnickoIme.getText(), fxmlLoginController.korisnickaSifra.getText());
         vm.getToi().igr = igrac;
+        vm.setTrenutnoUlogovaniIgrac(igrac);
 //        fxmlLoginController.gregorIgra.dodajIgraca(igrac);
         vm.pozivSO("kreirajIgraca");
 

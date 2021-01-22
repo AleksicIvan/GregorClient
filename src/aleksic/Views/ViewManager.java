@@ -3,6 +3,7 @@ package aleksic.Views;
 import aleksic.Controllers.BaseController;
 import aleksic.Controllers.FXMLGlavniProzorDocumentController;
 import aleksic.Controllers.FXMLLoginController;
+import aleksic.Models.Igrac;
 import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +23,7 @@ public class ViewManager {
     TransferObjekatIgrac toi = null;
     Stage currentStage;
     Scene currentScene;
+    Igrac trenutnoUlogovaniIgrac = null;
 
     public ObjectOutputStream getOut() {
         return out;
@@ -52,6 +54,7 @@ public class ViewManager {
 
         try {
             System.out.println("Saljem TOI");
+            out.reset();
             if (toi.rukaPrvogIgraca != null) {
                 System.out.println("ruka prvog igraca pred slanje: " + toi.rukaPrvogIgraca.size());
             }
@@ -59,7 +62,6 @@ public class ViewManager {
             if (toi.rukaDrugogIgraca != null) {
                 System.out.println("ruka drugog igraca pred slanje: " + toi.rukaDrugogIgraca.size());
             }
-            out.reset();
             out.writeObject(toi);
 
         } catch (IOException ex) {
@@ -70,6 +72,14 @@ public class ViewManager {
 //        } catch (IOException | ClassNotFoundException ex) {
 //            ex.printStackTrace();
 //        }
+    }
+
+    public Igrac getTrenutnoUlogovaniIgrac() {
+        return trenutnoUlogovaniIgrac;
+    }
+
+    public void setTrenutnoUlogovaniIgrac(Igrac trenutnoUlogovaniIgrac) {
+        this.trenutnoUlogovaniIgrac = trenutnoUlogovaniIgrac;
     }
 
     public Scene getCurrentScene() {

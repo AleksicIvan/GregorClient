@@ -55,13 +55,6 @@ public class ViewManager {
         try {
             System.out.println("Saljem TOI");
             out.reset();
-            if (toi.rukaPrvogIgraca != null) {
-                System.out.println("ruka prvog igraca pred slanje: " + toi.rukaPrvogIgraca.size());
-            }
-
-            if (toi.rukaDrugogIgraca != null) {
-                System.out.println("ruka drugog igraca pred slanje: " + toi.rukaDrugogIgraca.size());
-            }
             out.writeObject(toi);
 
         } catch (IOException ex) {

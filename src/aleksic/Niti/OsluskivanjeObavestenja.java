@@ -44,29 +44,8 @@ public class OsluskivanjeObavestenja extends Thread {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
-//                izvrsi(gto);
             Platform.runLater(() -> {
-//                System.out.println("Provera nit promena..." + toi.poruka);
-//                System.out.println("toi.indeks..." + toi.indeks);
-//                if (toi.prviIgrac != null) {
-//                    System.out.println("toi.prviigrac..." + toi.prviIgrac.vratiKorisnickoIme());
-//                }
-//                if (toi.drugiIgrac != null) {
-//                    System.out.println("toi.drugiigrac..." + toi.drugiIgrac.vratiKorisnickoIme());
-//                }
-//                if (toi.brojigraca != null) {
-//                    System.out.println("toi.listaIgraca.sz..." + toi.brojigraca);
-//                }
                 try {
-//                    if (toi.rukaPrvogIgraca != null) {
-//                        System.out.println("ruka prvog igraca pred setToi: " + toi.rukaPrvogIgraca.size());
-//                    }
-//
-//                    if (toi.rukaDrugogIgraca != null) {
-//                        System.out.println("ruka drugog igraca pred setToi: " + toi.rukaDrugogIgraca.size());
-//                    }
-                    System.out.println("jedi govna");
                     opstiGUIKontroler.setToi(toi);
                 } catch (IOException e) {
                     e.printStackTrace();

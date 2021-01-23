@@ -264,6 +264,18 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
         this.donjiIgracRuka = donjiIgracRuka;
     }
 
+    public void oduzmiZlatnikIzRukeDonjegIgraca (Node zlatnik) {
+        this.donjiIgracRuka.getChildren().remove(zlatnik);
+    }
+
+    public void oduzmiVitezaIzRukeDonjegIgraca (Node vitez) {
+        this.donjiIgracRuka.getChildren().remove(vitez);
+    }
+
+    public void oduzmiVitezaIzRedaVitezovaDonjegIgraca (Node vitez) {
+        this.donjiIgracRuka.getChildren().remove(vitez);
+    }
+
     public FXMLGlavniProzorDocumentController(Socket soketK, ViewManager viewManager, String nazivFxml) {
         super(soketK, viewManager, nazivFxml);
     }

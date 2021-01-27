@@ -9,12 +9,12 @@
    <children>
       <VBox fx:id="gornjIgracMeni" alignment="CENTER" layoutX="1.0" prefHeight="201.0" prefWidth="248.0" styleClass="gornjIgrac">
          <children>
-            <Label fx:id="gornjIgracKorisnickoIme" text="Igrac 1">
+            <Label fx:id="gornjIgracKorisnickoIme" text="">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" text="20">
+            <Label fx:id="zivotIgracaGore" alignment="CENTER" text="">
                <font>
                   <Font size="15.0" />
                </font>
@@ -24,12 +24,12 @@
          </children></VBox>
       <VBox fx:id="donjIgracMeni" alignment="CENTER" layoutY="300.0" prefHeight="201.0" prefWidth="248.0" styleClass="donjIgrac">
          <children>
-            <Label fx:id="donjIgracKorisnickoIme" text="Igrac 2">
+            <Label fx:id="donjIgracKorisnickoIme" text="">
                <font>
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" text="20">
+            <Label fx:id="zivotIgracaDole" alignment="CENTER" text="">
                <font>
                   <Font size="15.0" />
                </font>

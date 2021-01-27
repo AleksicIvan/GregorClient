@@ -62,7 +62,37 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     @FXML
     private HBox donjiIgracRuka;
 
+    @FXML
+    private Label zivotIgracaGore;
 
+    @FXML
+    private Label zivotIgracaDole;
+
+    public Label getZivotIgracaGore() {
+        return zivotIgracaGore;
+    }
+
+    public void setZivotIgracaGore(Label zivotIgracaGore) {
+        this.zivotIgracaGore = zivotIgracaGore;
+    }
+
+    public Label getZivotIgracaDole() {
+        return zivotIgracaDole;
+    }
+
+    public void setZivotIgracaDole(Label zivotIgracaDole) {
+        this.zivotIgracaDole = zivotIgracaDole;
+    }
+
+    public void postaviTextZivotIgracaGore (String zivot) {
+        this.zivotIgracaGore.setText(zivot);
+    }
+
+    public void postaviTextZivotIgracaDole (String zivot) {
+        this.zivotIgracaDole.setText(zivot);
+    }
+
+    public void postaviTextZivotIgracaDole () {}
 
     public Label getIgracNaPotezuGore() {
         return igracNaPotezuGore;

@@ -90,7 +90,9 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         vm.setToi(toi);
         System.out.println("set toi je pozvan");
         if (toi.nazivOperacije.equals("kreirajIgraca") && toi.brojigraca == 1) {
-            System.out.println("kreirajIgraca nazivoperacije nedna igrac");
+            System.out.println("kreirajIgraca nazivoperacije jedan igrac");
+            fxml.postaviTextZivotIgracaGore("");
+            fxml.postaviTextZivotIgracaDole("");
             fxml.postaviImeGornjegIgraca("Čeka se igrač...");
             return;
         }
@@ -111,6 +113,8 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         if (vm.getTrenutnoUlogovaniIgrac().vratiKorisnickoIme().equals(toi.prviIgrac.vratiKorisnickoIme())) {
             System.out.println("prvi je na potezu pa je drugi igrac gore");
             // prvi je na potezu pa je drugi igrac gore
+            fxml.postaviTextZivotIgracaGore(String.valueOf(toi.drugiIgrac.getZivot()));
+            fxml.postaviTextZivotIgracaDole(String.valueOf(toi.prviIgrac.getZivot()));
             fxml.postaviImeGornjegIgraca(toi.drugiIgrac.vratiKorisnickoIme());
             fxml.postaviImeDonjegIgraca(toi.prviIgrac.vratiKorisnickoIme());
             List<Karta> rukaGornjiIgrac = toi.rukaDrugogIgraca;
@@ -157,6 +161,8 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         } else {
             System.out.println("drugi je na potezu pa je prvi igrac gore");
             // drugi je na potezu pa je prvi igrac gore
+            fxml.postaviTextZivotIgracaGore(String.valueOf(toi.prviIgrac.getZivot()));
+            fxml.postaviTextZivotIgracaDole(String.valueOf(toi.drugiIgrac.getZivot()));
             fxml.postaviImeGornjegIgraca(toi.prviIgrac.vratiKorisnickoIme());
             fxml.postaviImeDonjegIgraca(toi.drugiIgrac.vratiKorisnickoIme());
             List<Karta> rukaGornjiIgrac = toi.rukaPrvogIgraca;

@@ -259,7 +259,7 @@ public class CardTestComponent extends VBox {
 
 
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.NAPAD)) {
-                    System.out.println("Faza poteza je IZBACI_VITEZA");
+                    System.out.println("Faza poteza je NAPAD");
                     guiKontroler.getFxml().oduzmiVitezaIzRedaVitezovaDonjegIgraca(this);
                     guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
                     guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
@@ -269,6 +269,20 @@ public class CardTestComponent extends VBox {
                     );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
                     guiKontroler.getVm().pozivSO("napad");
+                    break;
+                }
+
+                if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.ODBRANA)) {
+                    System.out.println("Faza poteza je ODBRANA");
+//                    guiKontroler.getFxml().oduzmiVitezaIzRedaVitezovaDonjegIgraca(this);
+//                    guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
+//                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
+//                            guiKontroler.getVm().getToi().prviIgrac,
+//                            guiKontroler.getVm().getToi().drugiIgrac,
+//                            Faza.NAPAD
+//                    );
+                    guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
+                    guiKontroler.getVm().pozivSO("odbrana");
                     break;
                 }
 //                    System.out.println("Faza poteza je IZBACI_VITEZA");

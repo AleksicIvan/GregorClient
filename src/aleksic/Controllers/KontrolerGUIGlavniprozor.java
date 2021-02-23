@@ -1,16 +1,15 @@
 package aleksic.Controllers;
 
+import aleksic.Controllers.Osluskivaci.OsluskivacZavrsiPotez;
 import aleksic.Models.Igrac;
 import aleksic.Models.Karta;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.Servis.Faza;
-import aleksic.Servis.Igra;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Komponente.CardTestComponent;
 import aleksic.Views.ViewManager;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.List;
 
 public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
@@ -59,6 +58,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         osluskivacObavestenja.setOpstiGUIKontroler(this);
         this.fxml = fxmlGlavniProzorDocumentController;
         this.vm = viewManager;
+        this.fxml.getZavrsiPotez().setOnAction(new OsluskivacZavrsiPotez(this));
         TransferObjekatIgrac toi = viewManager.getToi();
         fxml.postaviImeDonjegIgraca(toi.igr.vratiKorisnickoIme());
         if (toi.igra != null && toi.igra.getIgraci().size() == 0) {
@@ -87,6 +87,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
 
     @Override
     public void setToi(TransferObjekatIgrac toi) throws IOException {
+        // TODO implementiraj freezeRow feature, posle svakog poteza onemoguci elemente/karte u odgovarajucem redu da budu kliknute
         vm.setToi(toi);
         System.out.println("set toi je pozvan");
         if (toi.nazivOperacije.equals("kreirajIgraca") && toi.brojigraca == 1) {
@@ -348,6 +349,43 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
 ////            }
 //
 //        }
+    }
+
+    public void onZavrsiPotez () {
+        // TODO dodati mogucnost da igrac preskoci fazu
+        TransferObjekatIgrac toi = vm.getToi();
+        if (vm.getToi().fazaPoteza.equals(Faza.IZRACUNAJ_ISHOD)) {
+            vm.pozivSO("izracunajIshod");
+            return;
+        }
+        switch (vm.getToi().odigranaKarta.vratiTipKarte()) {
+            case ZLATNIK:
+                if (toi.fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
+                    vm.pozivSO("odigrajZlatnik");
+                    break;
+                }
+                if (toi.fazaPoteza.equals(Faza.PLATI)) {
+                    vm.pozivSO("plati");
+                    break;
+                }
+            case VITEZ:
+                if (toi.fazaPoteza.equals(Faza.IZBACI_VITEZA)) {
+                    vm.pozivSO("izbaciViteza");
+                    break;
+                }
+
+                if (toi.fazaPoteza.equals(Faza.NAPAD)) {
+                    vm.pozivSO("napad");
+                    break;
+                }
+
+                if (toi.fazaPoteza.equals(Faza.ODBRANA)) {
+                    vm.pozivSO("odbrana");
+                    break;
+                }
+            default:
+                break;
+        }
     }
 
     private void setRedNapadGornjiIgrac(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {

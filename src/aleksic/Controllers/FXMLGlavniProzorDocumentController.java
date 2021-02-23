@@ -4,6 +4,7 @@ import aleksic.Models.Karta;
 import aleksic.Views.ViewManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -67,6 +68,9 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
 
     @FXML
     private Label zivotIgracaDole;
+
+    @FXML
+    private Button zavrsiPotez;
 
     public Label getZivotIgracaGore() {
         return zivotIgracaGore;
@@ -196,6 +200,14 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
 
     public void dodajVitezaUNapadGornjiIgrac(Node karta) {
         gornjIgracRedNapad.getChildren().add(karta);
+    }
+
+    public Button getZavrsiPotez() {
+        return zavrsiPotez;
+    }
+
+    public void setZavrsiPotez(Button zavrsiPotez) {
+        this.zavrsiPotez = zavrsiPotez;
     }
 
     public VBox getGornjIgracMeni() {

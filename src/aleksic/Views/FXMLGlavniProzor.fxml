@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox fx:id="gornjIgracMeni" alignment="CENTER" layoutX="1.0" prefHeight="201.0" prefWidth="248.0" styleClass="gornjIgrac">
          <children>
@@ -36,6 +39,7 @@
             </Label>
             <Label fx:id="igracNaPotezuDole" />
             <Label fx:id="fazaPotezaDole" />
+            <Button fx:id="zavrsiPotez" mnemonicParsing="false" text="Zavrsi potez" />
          </children></VBox>
 
       <HBox fx:id="gornjIgracRedZlatnika" alignment="CENTER" layoutX="241.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />

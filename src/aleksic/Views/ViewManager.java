@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ViewManager {
     protected Socket soketK;
@@ -39,6 +40,8 @@ public class ViewManager {
         out = SocketSingleton.getInstance().getOut();
         out = SocketSingleton.getInstance().getOut();
         toi = new TransferObjekatIgrac();
+        toi.kliknutiZlatnici = new ArrayList<>();
+        toi.kliknutiVItezovi = new ArrayList<>();
         pozivSO("init");
     }
 

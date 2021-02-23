@@ -2,9 +2,7 @@ package aleksic.TransferObjekat;
 
 ;
 
-import aleksic.Models.Igrac;
-import aleksic.Models.Karta;
-import aleksic.Models.Talon;
+import aleksic.Models.*;
 import aleksic.Servis.Faza;
 import aleksic.Servis.Igra;
 
@@ -23,7 +21,10 @@ public class TransferObjekatIgrac implements Serializable {
     public Karta odigranaKarta;
     public Igrac prviIgrac;
     public Igrac drugiIgrac;
-    public Integer brojigraca;
+    public int brojigraca;
+    public int brojPoteza;
+    public List<Zlatnik> kliknutiZlatnici;
+    public List<Vitez> kliknutiVItezovi;
     public List<Karta> rukaPrvogIgraca;
     public List<Karta> spilPrvogIgraca;
     public Talon talonPrvogIgraca;

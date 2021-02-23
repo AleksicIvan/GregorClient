@@ -15,10 +15,6 @@ public class OsluskivacCardTest implements EventHandler {
 
     @Override
     public void handle(Event event) {
-        try {
-            kontrolerCardTest.cardTestOnClick();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        kontrolerCardTest.cardTestOnClick();
     }
 }

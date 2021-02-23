@@ -3,6 +3,8 @@ package aleksic.Komponente;
 import aleksic.Controllers.KontrolerGUIGlavniprozor;
 import aleksic.Models.Igrac;
 import aleksic.Models.Karta;
+import aleksic.Models.Vitez;
+import aleksic.Models.Zlatnik;
 import aleksic.Servis.Faza;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Views.ViewManager;
@@ -95,9 +97,10 @@ public class CardTestComponent extends VBox {
         this.vm = vm;
     }
 
-    public void cardTestOnClick () throws IOException {
+    public void cardTestOnClick () {
         switch (trenutnaKarta.vratiTipKarte()) {
             case ZLATNIK:
+                guiKontroler.getVm().getToi().kliknutiZlatnici.add((Zlatnik) trenutnaKarta);
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
                     guiKontroler.getFxml().oduzmiZlatnikIzRukeDonjegIgraca(this);
                     guiKontroler.getFxml().dodajZlatnikDonjiIgrac(this);
@@ -107,7 +110,7 @@ public class CardTestComponent extends VBox {
                             Faza.PLATI
                     );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
-                    guiKontroler.getVm().pozivSO("odigrajZlatnik");
+//                    guiKontroler.getVm().pozivSO("odigrajZlatnik");
                     break;
                 }
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.PLATI)) {
@@ -119,130 +122,11 @@ public class CardTestComponent extends VBox {
                             Faza.PLATI
                     );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
-                    guiKontroler.getVm().pozivSO("plati");
+//                    guiKontroler.getVm().pozivSO("plati");
                     break;
                 }
-//                    if (igracNaPotezu == "prviIgrac") {
-//                        guiKontroler.getFxml().oduzmiZlatnikIzRukeDonjegIgraca(this);
-//                        guiKontroler.getFxml().dodajZlatnikDonjiIgrac(this);
-//                        guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                guiKontroler.getVm().getToi().prviIgrac,
-//                                guiKontroler.getVm().getToi().drugiIgrac,
-//                                Faza.PLATI
-//                        );
-//                        guiKontroler.getVm().getToi().rukaPrvogIgraca.remove(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().talonPrvogIgraca.getRedZlatnika().add(trenutnaKarta);
-//                    } else {
-//                        guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                guiKontroler.getVm().getToi().drugiIgrac,
-//                                guiKontroler.getVm().getToi().prviIgrac,
-//                                guiKontroler.getVm().getToi().fazaPoteza
-//                        );
-//                        int indexOfCardToRemove = guiKontroler.getVm().getToi().rukaDrugogIgraca.indexOf(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().rukaDrugogIgraca.remove(indexOfCardToRemove);
-//                        guiKontroler.getVm().getToi().talonDrugogIgraca.getRedZlatnika().add(trenutnaKarta);
-//                    }
-//                    guiKontroler.getFxml().dodajZlatnikDonjiIgrac(this);
-//                    for (Node guiElementKarta : guiKontroler.getFxml().getDonjiIgracRuka().getChildren()) {
-//                        guiElementKarta.setDisable(true);
-//                    }
-//                    for (Node guiElementKarta : guiKontroler.getFxml().getGornjiIgracRuka().getChildren()) {
-//                        guiElementKarta.setDisable(true);
-//                    }
-//                    guiKontroler.getVm().getToi().fazaPoteza = Faza.PLATI;
-//                    guiKontroler.getFxml().getFazaPotezaDole().setText(guiKontroler.getVm().getToi().fazaPoteza.toString());
-//                    guiKontroler.getFxml().dodajZlatnikDonjiIgrac(this);
-//                    guiKontroler.getVm().pozivSO("odigrajZlatnik");
-//                }
-//
-//                if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.PLATI)) {
-//                    System.out.println("Faza poteza je PLATI i zlatnik u redu zlatnika je kliknut");
-//                    kartaVBox.getStyleClass().add("iskoriscena-karta");
-//                    kartaVBox.setDisable(true);
-//                    if (igracNaPotezu.equals("prviIgrac")) {
-//                        int brojZlatnikaUReduZlatnika = guiKontroler
-//                                .getVm()
-//                                .getToi()
-//                                .talonPrvogIgraca
-//                                .getRedZlatnika()
-//                                .size();
-//
-//                        if (brojZlatnikaUReduZlatnika > 0) {
-//                            guiKontroler
-//                                    .getVm()
-//                                    .getToi()
-//                                    .talonPrvogIgraca
-//                                    .getRedZlatnika()
-//                                    .stream()
-//                                    .filter(k -> trenutnaKarta.getId().equals(k.getId()))
-//                                    .findFirst()
-//                                    .get()
-//                                    .setIskoriscena(true);
-//                            brojZlatnikaUReduZlatnika--;
-//                            for (Node guiElementKarta : guiKontroler.getFxml().getDonjiIgracRuka().getChildren()) {
-//                                guiElementKarta.setDisable(false);
-//                            }
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_VITEZA;
-//                            guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                    guiKontroler.getVm().getToi().prviIgrac,
-//                                    guiKontroler.getVm().getToi().drugiIgrac,
-//                                    guiKontroler.getVm().getToi().fazaPoteza
-//                            );
-//                        } else {
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_VITEZA;
-//                            for (Node guiElementKarta : guiKontroler.getFxml().getDonjiIgracRuka().getChildren()) {
-//                                guiElementKarta.setDisable(false);
-//                            }
-//                            guiKontroler.getVm().pozivSO("promenaFaze");
-//                            break;
-//                        }
-//
-//                    } else {
-//                        int brojZlatnikaUReduZlatnika = guiKontroler
-//                                .getVm()
-//                                .getToi()
-//                                .talonDrugogIgraca
-//                                .getRedZlatnika()
-//                                .size();
-//                        if (brojZlatnikaUReduZlatnika > 0) {
-//                            guiKontroler
-//                                    .getVm()
-//                                    .getToi()
-//                                    .talonDrugogIgraca
-//                                    .getRedZlatnika()
-//                                    .stream()
-//                                    .filter(k -> trenutnaKarta.getId().equals(k.getId()))
-//                                    .findFirst()
-//                                    .get()
-//                                    .setIskoriscena(true);
-//                            brojZlatnikaUReduZlatnika--;
-//                            for (Node guiElementKarta : guiKontroler.getFxml().getDonjiIgracRuka().getChildren()) {
-//                                guiElementKarta.setDisable(false);
-//                            }
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_VITEZA;
-//                            guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                    guiKontroler.getVm().getToi().drugiIgrac,
-//                                    guiKontroler.getVm().getToi().prviIgrac,
-//                                    guiKontroler.getVm().getToi().fazaPoteza
-//                            );
-//                        } else {
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_VITEZA;
-//                            for (Node guiElementKarta : guiKontroler.getFxml().getDonjiIgracRuka().getChildren()) {
-//                                guiElementKarta.setDisable(false);
-//                            }
-//                            guiKontroler.getVm().pozivSO("promenaFaze");
-//                            break;
-//                        }
-//                    }
-//                    guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_VITEZA;
-//                    guiKontroler.getVm().pozivSO("plati");
-////                    guiKontroler.getFxml().getFazaPotezaDole().setText(guiKontroler.getVm().getToi().fazaPoteza.toString());
-////                    for (Node guiElementKarta : guiKontroler.getFxml().getDonjiIgracRuka().getChildren()) {
-////                        guiElementKarta.setDisable(true);
-////                    }
-//                    break;
-//                }
             case VITEZ:
+                guiKontroler.getVm().getToi().kliknutiVItezovi.add((Vitez) trenutnaKarta);
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.IZBACI_VITEZA)) {
                     System.out.println("Faza poteza je IZBACI_VITEZA");
                     guiKontroler.getFxml().oduzmiVitezaIzRukeDonjegIgraca(this);
@@ -253,7 +137,7 @@ public class CardTestComponent extends VBox {
                             Faza.NAPAD
                     );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
-                    guiKontroler.getVm().pozivSO("izbaciViteza");
+//                    guiKontroler.getVm().pozivSO("izbaciViteza");
                     break;
                 }
 
@@ -268,214 +152,16 @@ public class CardTestComponent extends VBox {
                             Faza.NAPAD
                     );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
-                    guiKontroler.getVm().pozivSO("napad");
+//                    guiKontroler.getVm().pozivSO("napad");
                     break;
                 }
 
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.ODBRANA)) {
                     System.out.println("Faza poteza je ODBRANA");
-//                    guiKontroler.getFxml().oduzmiVitezaIzRedaVitezovaDonjegIgraca(this);
-//                    guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
-//                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                            guiKontroler.getVm().getToi().prviIgrac,
-//                            guiKontroler.getVm().getToi().drugiIgrac,
-//                            Faza.NAPAD
-//                    );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
-                    guiKontroler.getVm().pozivSO("odbrana");
+//                    guiKontroler.getVm().pozivSO("odbrana");
                     break;
                 }
-//                    System.out.println("Faza poteza je IZBACI_VITEZA");
-//                    if (igracNaPotezu == "prviIgrac") {
-//                        guiKontroler.getVm().getToi().rukaPrvogIgraca.remove(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().talonPrvogIgraca.getRedVitezova().add(trenutnaKarta);
-//                        if (guiKontroler.getVm().getToi().prviPotez == true) {
-//                            this.igracNaPotezu = "drugiIgrac";
-//                            guiKontroler.getVm().getToi().prviPotez = false;
-//                            guiKontroler.getVm().getToi().igracNaPotezu = guiKontroler.getVm().getToi().drugiIgrac;
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_ZLATNIK;
-//                            guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                    guiKontroler.getVm().getToi().drugiIgrac,
-//                                    guiKontroler.getVm().getToi().drugiIgrac,
-//                                    guiKontroler.getVm().getToi().fazaPoteza
-//                            );
-//                        } else {
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.NAPAD;
-//
-//                            guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                    guiKontroler.getVm().getToi().prviIgrac,
-//                                    guiKontroler.getVm().getToi().drugiIgrac,
-//                                    guiKontroler.getVm().getToi().fazaPoteza
-//                            );
-//                        }
-//                        guiKontroler.getFxml().dodajVitezaDonjiIgrac(this);
-//                        guiKontroler.getVm().pozivSO("izbaciViteza");
-//
-////                        long kolicinaPlacenihZlatnika = guiKontroler
-////                                .getVm()
-////                                .getToi()
-////                                .talonPrvogIgraca
-////                                .getRedZlatnika()
-////                                .stream()
-////                                .filter(k -> k.isIskoriscena())
-////                                .count();
-////                        if (kolicinaPlacenihZlatnika >= 0) {
-////                            guiKontroler.getVm().getToi().rukaPrvogIgraca.remove(trenutnaKarta);
-////                            guiKontroler.getVm().getToi().talonPrvogIgraca.getRedVitezova().add(trenutnaKarta);
-////                            kolicinaPlacenihZlatnika--;
-////                            if (guiKontroler.getVm().getToi().prviPotez == true) {
-////                                this.igracNaPotezu = "drugiIgrac";
-////                                guiKontroler.getVm().getToi().prviPotez = false;
-////                                guiKontroler.getVm().getToi().igracNaPotezu = guiKontroler.getVm().getToi().drugiIgrac;
-////                                guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_ZLATNIK;
-////                                guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-////                                        guiKontroler.getVm().getToi().drugiIgrac,
-////                                        guiKontroler.getVm().getToi().drugiIgrac,
-////                                        guiKontroler.getVm().getToi().fazaPoteza
-////                                );
-////                            } else {
-////                                guiKontroler.getVm().getToi().fazaPoteza = Faza.NAPAD;
-////
-////                                guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-////                                        guiKontroler.getVm().getToi().prviIgrac,
-////                                        guiKontroler.getVm().getToi().drugiIgrac,
-////                                        guiKontroler.getVm().getToi().fazaPoteza
-////                                );
-////                            }
-////                            guiKontroler.getVm().getToi().rukaPrvogIgraca.remove(trenutnaKarta);
-////                            guiKontroler.getVm().getToi().talonPrvogIgraca.getRedVitezova().add(trenutnaKarta);
-////                            guiKontroler.getFxml().dodajVitezaDonjiIgrac(this);
-////                            guiKontroler.getVm().pozivSO("izbaciViteza");
-////                            break;
-////                        } else {
-////                            System.out.println("Nemate vise resursa za odigravanje Vitez karte!!!");
-////                            guiKontroler.getVm().getToi().fazaPoteza = Faza.NAPAD;
-//////                            guiKontroler.getFxml().getFazaPotezaDole().setText(guiKontroler.getVm().getToi().fazaPoteza.toString());
-////                            guiKontroler.getVm().pozivSO("promenaFaze");
-////                            break;
-////                        }
-//                    } else {
-//                        int indexOfCardToRemove = guiKontroler.getVm().getToi().rukaDrugogIgraca.indexOf(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().rukaDrugogIgraca.remove(indexOfCardToRemove);
-//                        guiKontroler.getVm().getToi().talonDrugogIgraca.getRedVitezova().add(trenutnaKarta);
-//                        if (guiKontroler.getVm().getToi().prviPotez == true) {
-//                            this.igracNaPotezu = "drugiIgrac";
-//                            guiKontroler.getVm().getToi().prviPotez = false;
-//                            guiKontroler.getVm().getToi().igracNaPotezu = guiKontroler.getVm().getToi().prviIgrac;
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_ZLATNIK;
-//                            guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                    guiKontroler.getVm().getToi().prviIgrac,
-//                                    guiKontroler.getVm().getToi().prviIgrac,
-//                                    guiKontroler.getVm().getToi().fazaPoteza
-//                            );
-//                        } else {
-//                            guiKontroler.getVm().getToi().fazaPoteza = Faza.NAPAD;
-//                            guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-//                                    guiKontroler.getVm().getToi().drugiIgrac,
-//                                    guiKontroler.getVm().getToi().prviIgrac,
-//                                    guiKontroler.getVm().getToi().fazaPoteza
-//                            );
-//                        }
-//                        guiKontroler.getFxml().dodajVitezaDonjiIgrac(this);
-//                        guiKontroler.getVm().pozivSO("izbaciViteza");
-//
-//
-////                        long kolicinaPlacenihZlatnika = guiKontroler
-////                                .getVm()
-////                                .getToi()
-////                                .talonPrvogIgraca
-////                                .getRedZlatnika()
-////                                .stream()
-////                                .filter(k -> k.isIskoriscena())
-////                                .count();
-////                        if (kolicinaPlacenihZlatnika >= 0) {
-////                            guiKontroler.getVm().getToi().rukaDrugogIgraca.remove(trenutnaKarta);
-////                            guiKontroler.getVm().getToi().talonDrugogIgraca.getRedVitezova().add(trenutnaKarta);
-////                            kolicinaPlacenihZlatnika--;
-////                            if (guiKontroler.getVm().getToi().prviPotez == true) {
-////                                this.igracNaPotezu = "drugiIgrac";
-////                                guiKontroler.getVm().getToi().prviPotez = false;
-////                                guiKontroler.getVm().getToi().igracNaPotezu = guiKontroler.getVm().getToi().prviIgrac;
-////                                guiKontroler.getVm().getToi().fazaPoteza = Faza.IZBACI_ZLATNIK;
-////                                guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-////                                        guiKontroler.getVm().getToi().prviIgrac,
-////                                        guiKontroler.getVm().getToi().prviIgrac,
-////                                        guiKontroler.getVm().getToi().fazaPoteza
-////                                );
-////                            } else {
-////                                guiKontroler.getVm().getToi().fazaPoteza = Faza.NAPAD;
-////                                guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-////                                        guiKontroler.getVm().getToi().drugiIgrac,
-////                                        guiKontroler.getVm().getToi().prviIgrac,
-////                                        guiKontroler.getVm().getToi().fazaPoteza
-////                                );
-////                            }
-////                            guiKontroler.getFxml().dodajVitezaDonjiIgrac(this);
-////                            guiKontroler.getVm().pozivSO("izbaciViteza");
-////                            break;
-////                        } else {
-////                            System.out.println("Nemate vise resursa za odigravanje Vitez karte!!!");
-////                            guiKontroler.getVm().getToi().fazaPoteza = Faza.NAPAD;
-////                            guiKontroler.getFxml().getFazaPotezaDole().setText(guiKontroler.getVm().getToi().fazaPoteza.toString());
-////                            guiKontroler.getVm().pozivSO("promenaFaze");
-////                        }
-//                    }
-//                    break;
-//                }
-//                if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.NAPAD)) {
-//                    System.out.println("Faza poteza je NAPAD");
-//                    if (igracNaPotezu == "prviIgrac") {
-//                        guiKontroler.getVm().getToi().talonPrvogIgraca.getRedVitezova().remove(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().talonPrvogIgraca.getRedNapad().add(trenutnaKarta);
-////                        guiKontroler.getVm().getToi().fazaPoteza = Faza.ODBRANA;
-////                        guiKontroler.getVm().getToi().igracNaPotezu = guiKontroler.getVm().getToi().drugiIgrac;
-////                        igracNaPotezu = "drugiIgrac";
-//
-////                        guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-////                                guiKontroler.getVm().getTrenutnoUlogovaniIgrac(),
-////                                guiKontroler.getVm().getToi().prviIgrac,
-////                                guiKontroler.getVm().getToi().fazaPoteza
-////                        );
-//                    } else {
-//                        guiKontroler.getVm().getToi().talonDrugogIgraca.getRedVitezova().remove(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().talonDrugogIgraca .getRedNapad().add(trenutnaKarta);
-//
-////                        guiKontroler.getVm().getToi().fazaPoteza = Faza.ODBRANA;
-////                        guiKontroler.getVm().getToi().igracNaPotezu = guiKontroler.getVm().getToi().prviIgrac;
-////                        igracNaPotezu = "prviIgrac";
-//
-////                        guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-////                                guiKontroler.getVm().getTrenutnoUlogovaniIgrac(),
-////                                guiKontroler.getVm().getToi().drugiIgrac,
-////                                guiKontroler.getVm().getToi().fazaPoteza
-////                        );
-//                    }
-//
-//                    guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
-//
-//                    guiKontroler.getVm().pozivSO("napad");
-//                }
-
-//                if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.ODBRANA)) {
-//                    System.out.println("Faza poteza je ODBRANA cardClick");
-//                    System.out.println("igracNaPotezu cardClick: " + igracNaPotezu);
-//                    System.out.println("trenuntna karta cardClick: " + trenutnaKarta);
-//                    System.out.println("prviIgrac V talon cardClick: " + guiKontroler.getVm().getToi().talonPrvogIgraca.getRedVitezova());
-//                    System.out.println("drugiIgrac V talon cardClick: " + guiKontroler.getVm().getToi().talonDrugogIgraca.getRedVitezova());
-//                    guiKontroler.getFxml().resetRedvitezovaDonjiIgrac();
-//                    guiKontroler.getFxml().resetujNapadDonjegIgraca();
-//                    if (igracNaPotezu == "prviIgrac") {
-//                        guiKontroler.getVm().getToi().talonPrvogIgraca.getRedVitezova().remove(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().talonPrvogIgraca.getRedOdbrana().add(trenutnaKarta);
-//                    } else {
-//                        guiKontroler.getVm().getToi().talonDrugogIgraca.getRedVitezova().remove(trenutnaKarta);
-//                        guiKontroler.getVm().getToi().talonDrugogIgraca .getRedOdbrana().add(trenutnaKarta);
-//                    }
-//
-//                    guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
-//
-//                    guiKontroler.getVm().pozivSO("odbrana");
-//                }
             default:
                 break;
         }

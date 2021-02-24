@@ -72,6 +72,17 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     @FXML
     private Button zavrsiPotez;
 
+    @FXML
+    private Button preskociFazu;
+
+    public Button getPreskociFazu() {
+        return preskociFazu;
+    }
+
+    public void setPreskociFazu(Button preskociFazu) {
+        this.preskociFazu = preskociFazu;
+    }
+
     public Label getZivotIgracaGore() {
         return zivotIgracaGore;
     }

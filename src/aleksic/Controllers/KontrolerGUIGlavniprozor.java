@@ -1,5 +1,6 @@
 package aleksic.Controllers;
 
+import aleksic.Controllers.Osluskivaci.OsluskivacPreskociFazu;
 import aleksic.Controllers.Osluskivaci.OsluskivacZavrsiPotez;
 import aleksic.Models.Igrac;
 import aleksic.Models.Karta;
@@ -59,6 +60,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         this.fxml = fxmlGlavniProzorDocumentController;
         this.vm = viewManager;
         this.fxml.getZavrsiPotez().setOnAction(new OsluskivacZavrsiPotez(this));
+        this.fxml.getPreskociFazu().setOnAction(new OsluskivacPreskociFazu(this));
         TransferObjekatIgrac toi = viewManager.getToi();
         fxml.postaviImeDonjegIgraca(toi.igr.vratiKorisnickoIme());
         if (toi.igra != null && toi.igra.getIgraci().size() == 0) {
@@ -349,6 +351,11 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
 ////            }
 //
 //        }
+    }
+
+    public void onPreskociFazu () {
+        System.out.println("preskacem fazu...");
+        vm.pozivSO("preskociFazu");
     }
 
     public void onZavrsiPotez () {

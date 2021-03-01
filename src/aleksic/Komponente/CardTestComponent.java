@@ -104,11 +104,11 @@ public class CardTestComponent extends VBox {
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
                     guiKontroler.getFxml().oduzmiZlatnikIzRukeDonjegIgraca(this);
                     guiKontroler.getFxml().dodajZlatnikDonjiIgrac(this);
-                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-                            guiKontroler.getVm().getToi().prviIgrac,
-                            guiKontroler.getVm().getToi().drugiIgrac,
-                            Faza.PLATI
-                    );
+//                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
+//                            guiKontroler.getVm().getToi().prviIgrac,
+//                            guiKontroler.getVm().getToi().drugiIgrac,
+//                            Faza.PLATI
+//                    );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
 //                    guiKontroler.getVm().pozivSO("odigrajZlatnik");
                     break;
@@ -116,11 +116,11 @@ public class CardTestComponent extends VBox {
                 if (guiKontroler.getVm().getToi().fazaPoteza.equals(Faza.PLATI)) {
                     kartaVBox.getStyleClass().removeAll();
                     kartaVBox.getStyleClass().add("iskoriscena-karta");
-                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-                            guiKontroler.getVm().getToi().prviIgrac,
-                            guiKontroler.getVm().getToi().drugiIgrac,
-                            Faza.PLATI
-                    );
+//                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
+//                            guiKontroler.getVm().getToi().prviIgrac,
+//                            guiKontroler.getVm().getToi().drugiIgrac,
+//                            Faza.PLATI
+//                    );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
 //                    guiKontroler.getVm().pozivSO("plati");
                     break;
@@ -131,11 +131,11 @@ public class CardTestComponent extends VBox {
                     System.out.println("Faza poteza je IZBACI_VITEZA");
                     guiKontroler.getFxml().oduzmiVitezaIzRukeDonjegIgraca(this);
                     guiKontroler.getFxml().dodajVitezaDonjiIgrac(this);
-                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-                            guiKontroler.getVm().getToi().prviIgrac,
-                            guiKontroler.getVm().getToi().drugiIgrac,
-                            Faza.NAPAD
-                    );
+//                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
+//                            guiKontroler.getVm().getToi().prviIgrac,
+//                            guiKontroler.getVm().getToi().drugiIgrac,
+//                            Faza.NAPAD
+//                    );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
 //                    guiKontroler.getVm().pozivSO("izbaciViteza");
                     break;
@@ -146,11 +146,11 @@ public class CardTestComponent extends VBox {
                     System.out.println("Faza poteza je NAPAD");
                     guiKontroler.getFxml().oduzmiVitezaIzRedaVitezovaDonjegIgraca(this);
                     guiKontroler.getFxml().dodajVitezaUNapadDonjiIgrac(this);
-                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
-                            guiKontroler.getVm().getToi().prviIgrac,
-                            guiKontroler.getVm().getToi().drugiIgrac,
-                            Faza.NAPAD
-                    );
+//                    guiKontroler.setIgracNaPotezuIfazaPotezaIndikatore(
+//                            guiKontroler.getVm().getToi().prviIgrac,
+//                            guiKontroler.getVm().getToi().drugiIgrac,
+//                            Faza.NAPAD
+//                    );
                     guiKontroler.getVm().getToi().odigranaKarta = trenutnaKarta;
 //                    guiKontroler.getVm().pozivSO("napad");
                     break;

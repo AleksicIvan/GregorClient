@@ -36,8 +36,8 @@
             </Label>
             <Label fx:id="igracNaPotezuDole" />
             <Label fx:id="fazaPotezaDole" />
-            <Button fx:id="zavrsiPotez" mnemonicParsing="false" text="Zavrsi fazu" />
-            <Button fx:id="preskociFazu" mnemonicParsing="false" text="Preskoci fazu" />
+            <Button fx:id="zavrsiPotez" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Zavrsi" />
+            <Button fx:id="preskociFazu" mnemonicParsing="false" prefHeight="25.0" prefWidth="60.0" text="Preskoci" />
          </children></VBox>
 
       <HBox fx:id="gornjIgracRedZlatnika" alignment="CENTER" layoutX="241.0" prefHeight="100.0" prefWidth="560.0" styleClass="gornjIgrac" />

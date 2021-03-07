@@ -36,9 +36,7 @@ public class OsluskivanjeObavestenja extends Thread {
     public void run() {
         while (true) {
             try {
-//                toi = (TransferObjekatIgrac) new ObjectInputStream(opstiGUIKontroler.getSoketK().getInputStream()).readObject();
                 toi = (TransferObjekatIgrac) SocketSingleton.getInstance().getIn().readObject();
-//                toi = (TransferObjekatIgrac) opstiGUIKontroler.getVm().getIn().readObject();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

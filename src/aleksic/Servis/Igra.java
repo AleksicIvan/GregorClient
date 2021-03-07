@@ -44,7 +44,7 @@ public class Igra implements Serializable {
     public void init() {
         for (Integer i = 0; i < igraci.size(); i++) {
             Igrac trenutniIgrac = igraci.get(i);
-            trenutniIgrac.setZivot(20);
+            trenutniIgrac.setZivot(10);
             Spil spil = new Spil();
             List<Karta> promesaniSpil = spil.promesajSpil();
             List<Karta> podeljenaRuka = spil.podeliRuku(promesaniSpil);

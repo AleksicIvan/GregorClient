@@ -94,6 +94,10 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         // TODO implementiraj freezeRow feature, posle svakog poteza onemoguci elemente/karte u odgovarajucem redu da budu kliknute
         vm.setToi(toi);
         System.out.println("set toi je pozvan");
+        System.out.println("sizeRedVitezovaPrviIgrac " + toi.sizeRedVitezovaPrviIgrac);
+        System.out.println("redVitezovaPrviIgrac " + toi.redVitezovaPrviIgrac);
+        System.out.println("sizeRedVitezovaDrugiIgrac " + toi.sizeRedVitezovaDrugiIgrac);
+        System.out.println("redRedVitezovaDrugiIgrac " + toi.redRedVitezovaDrugiIgrac);
         if (toi.nazivOperacije.equals("kreirajIgraca") && toi.brojigraca == 1) {
             System.out.println("kreirajIgraca nazivoperacije jedan igrac");
             fxml.postaviTextZivotIgracaGore("");
@@ -142,12 +146,12 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : zlatniciGornjiRed) {
                 setZlatnikeGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
             }
-            List<Karta> vitezoviGornjired = toi.talonDrugogIgraca.getRedVitezova();
+            List<Karta> vitezoviGornjired = toi.redRedVitezovaDrugiIgrac;
             for (Karta k : vitezoviGornjired) {
                 System.out.println("vitezoviGornjired: " + vitezoviGornjired.size());
                 setVitezoveGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
             }
-            List<Karta> redNapadGornjegIgraca = toi.talonDrugogIgraca.getRedNapad();
+            List<Karta> redNapadGornjegIgraca = toi.redNapadDrugiIgrac;
             for (Karta k : redNapadGornjegIgraca) {
                 setRedNapadGornjiIgrac(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
             }
@@ -163,12 +167,12 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : zlatniciDonjiRed) {
                 setZlatnikeDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
             }
-            List<Karta> vitezoviDonjired = toi.talonPrvogIgraca.getRedVitezova();
+            List<Karta> vitezoviDonjired = toi.redVitezovaPrviIgrac;
             System.out.println("vitezoviDonjired: " + vitezoviDonjired.size());
             for (Karta k : vitezoviDonjired) {
                 setVitezoveDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
             }
-            List<Karta> redNapadDonjegIgraca = toi.talonPrvogIgraca.getRedNapad();
+            List<Karta> redNapadDonjegIgraca = toi.redNapadPrviIgrac;
             for (Karta k : redNapadDonjegIgraca) {
                 setRedNapadDonjiIgrac(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
             }
@@ -191,12 +195,12 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : zlatniciGornjiRed) {
                 setZlatnikeGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
             }
-            List<Karta> vitezoviGornjired = toi.talonPrvogIgraca.getRedVitezova();
+            List<Karta> vitezoviGornjired = toi.redVitezovaPrviIgrac;
             System.out.println("vitezoviGornjired: " + vitezoviGornjired.size());
             for (Karta k : vitezoviGornjired) {
                 setVitezoveGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "drugiIgrac");
             }
-            List<Karta> redNapadGornjegIgraca = toi.talonPrvogIgraca.getRedNapad();
+            List<Karta> redNapadGornjegIgraca = toi.redNapadPrviIgrac;
             for (Karta k : redNapadGornjegIgraca) {
                 setRedNapadGornjiIgrac(k, toi, toi.prviIgrac, toi.drugiIgrac, "drugiIgrac");
             }
@@ -212,12 +216,12 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : zlatniciDonjiRed) {
                 setZlatnikeDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
             }
-            List<Karta> vitezoviDonjired = toi.talonDrugogIgraca.getRedVitezova();
+            List<Karta> vitezoviDonjired = toi.redRedVitezovaDrugiIgrac;
             System.out.println("vitezoviDonjired: " + vitezoviDonjired.size());
             for (Karta k : vitezoviDonjired) {
                 setVitezoveDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
             }
-            List<Karta> redNapadDonjegIgraca = toi.talonDrugogIgraca.getRedNapad();
+            List<Karta> redNapadDonjegIgraca = toi.redNapadDrugiIgrac;
             for (Karta k : redNapadDonjegIgraca) {
                 setRedNapadDonjiIgrac(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
             }

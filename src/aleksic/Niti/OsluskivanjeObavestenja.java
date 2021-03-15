@@ -37,6 +37,7 @@ public class OsluskivanjeObavestenja extends Thread {
         while (true) {
             try {
                 toi = (TransferObjekatIgrac) SocketSingleton.getInstance().getIn().readObject();
+                System.out.println("toi poruka " + toi.poruka);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

@@ -9,9 +9,12 @@ import aleksic.Servis.Faza;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Komponente.CardTestComponent;
 import aleksic.Views.ViewManager;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
     FXMLGlavniProzorDocumentController fxml;
@@ -69,31 +72,39 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             fxml.postaviImeGornjegIgraca("Čeka se igrač...");
         }
 
-        if (toi.igra != null && toi.igra.getIgraci().size() == 1) {
-            Igrac ulogovaniIgrac = toi.igr;
-            Igrac stariIgrac = toi.igra.getIgraci().get(0);
-//            Igrac igracNaPotezu = toi.igra.getIgracNaPotezu();
-
-            postaviImeGornjegIgraca(stariIgrac.vratiKorisnickoIme());
-            postaviImeDonjegIgraca(ulogovaniIgrac.vratiKorisnickoIme());
-//            setIgracNaPotezuIfazaPotezaIndikatore(toi.igracNaPotezu, stariIgrac, toi.igra.vratiFazuPoteza());
-
-//            List<Karta> rukaGornjiIgrac = stariIgrac.vratiRuku();
-//            for (Karta k : rukaGornjiIgrac) {
-//                setRukuGornjegIgraca(k, toi, stariIgrac, ulogovaniIgrac);
-//            }
-//            List<Karta> rukaDonjiIgrac = ulogovaniIgrac.vratiRuku();
-//            for (Karta k : rukaDonjiIgrac) {
-//                setRukuDonjegIgraca(k, toi, ulogovaniIgrac, stariIgrac);
-//            }
+        if (toi.brojigraca == 2) {
+            if (rerender(toi)) return;
         }
     }
 
     @Override
     public void setToi(TransferObjekatIgrac toi) throws IOException {
         // TODO implementiraj freezeRow feature, posle svakog poteza onemoguci elemente/karte u odgovarajucem redu da budu kliknute
+        System.out.println("setToi je pozvan");
+
         vm.setToi(toi);
-        System.out.println("set toi je pozvan");
+        if (toi.poruka.contains("KRAJ IGRE")) {
+            Alert krajIgreAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            krajIgreAlert.setTitle(null);
+            krajIgreAlert.setHeaderText(null);
+            krajIgreAlert.setContentText("Kraj igre!!! Da li zelite novu igru?");
+            Optional<ButtonType> result = krajIgreAlert.showAndWait();
+            if (result.get() == ButtonType.OK){
+               toi.nazivOperacije = "novaIgra";
+               vm.pozivSO("novaIgra");
+               krajIgreAlert.close();
+            } else {
+                // ... user chose CANCEL or closed the dialog
+                krajIgreAlert.close();
+            }
+        }
+        if (rerender(toi)) return;
+
+        System.out.println("setToi izvrsen");
+    }
+
+    private boolean rerender(TransferObjekatIgrac toi) throws IOException {
+        System.out.println("rerender je pozvan");
         System.out.println("sizeRedVitezovaPrviIgrac " + toi.sizeRedVitezovaPrviIgrac);
         System.out.println("redVitezovaPrviIgrac " + toi.redVitezovaPrviIgrac);
         System.out.println("sizeRedVitezovaDrugiIgrac " + toi.sizeRedVitezovaDrugiIgrac);
@@ -103,7 +114,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             fxml.postaviTextZivotIgracaGore("");
             fxml.postaviTextZivotIgracaDole("");
             fxml.postaviImeGornjegIgraca("Čeka se igrač...");
-            return;
+            return true;
         }
         System.out.println("naziv sistemske operacije: " + toi.nazivOperacije);
 
@@ -141,7 +152,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : rukaGornjiIgrac) {
                 setRukuGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
             }
-            List<Karta> zlatniciGornjiRed = toi.talonDrugogIgraca.getRedZlatnika();
+            List<Karta> zlatniciGornjiRed = toi.redZlatnikaDrugiIgrac;
             System.out.println("zlatniciGornjiRed: " + zlatniciGornjiRed.size());
             for (Karta k : zlatniciGornjiRed) {
                 setZlatnikeGornjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
@@ -162,7 +173,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : rukaDonjiIgrac) {
                 setRukuDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
             }
-            List<Karta> zlatniciDonjiRed = toi.talonPrvogIgraca.getRedZlatnika();
+            List<Karta> zlatniciDonjiRed = toi.redZlatnikaPrviIgrac;
             System.out.println("zlatniciDonjiRed: " + zlatniciDonjiRed.size());
             for (Karta k : zlatniciDonjiRed) {
                 setZlatnikeDonjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
@@ -190,7 +201,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : rukaGornjiIgrac) {
                 setRukuGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "drugiIgrac");
             }
-            List<Karta> zlatniciGornjiRed = toi.talonPrvogIgraca.getRedZlatnika();
+            List<Karta> zlatniciGornjiRed = toi.redZlatnikaPrviIgrac;
             System.out.println("zlatniciGornjiRed: " + zlatniciGornjiRed.size());
             for (Karta k : zlatniciGornjiRed) {
                 setZlatnikeGornjegIgraca(k, toi, toi.prviIgrac, toi.drugiIgrac, "prviIgrac");
@@ -211,7 +222,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             for (Karta k : rukaDonjiIgrac) {
                 setRukuDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "drugiIgrac");
             }
-            List<Karta> zlatniciDonjiRed = toi.talonDrugogIgraca.getRedZlatnika();
+            List<Karta> zlatniciDonjiRed = toi.redZlatnikaDrugiIgrac;
             System.out.println("zlatniciDonjiRed: " + zlatniciDonjiRed.size());
             for (Karta k : zlatniciDonjiRed) {
                 setZlatnikeDonjegIgraca(k, toi, toi.drugiIgrac, toi.prviIgrac, "prviIgrac");
@@ -227,8 +238,9 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             }
             setIgracNaPotezuIfazaPotezaIndikatore(toi.igracNaPotezu, toi.prviIgrac, toi.fazaPoteza);
         }
+        System.out.println("rerender je zavrsen");
 
-        System.out.println("setToi izvrsen");
+        return false;
     }
 
     public void onPreskociFazu () {
@@ -267,34 +279,6 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             vm.pozivSO("odbrana");
             return;
         }
-//        switch (vm.getToi().odigranaKarta.vratiTipKarte()) {
-//            case ZLATNIK:
-//                if (toi.fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
-//                    vm.pozivSO("odigrajZlatnik");
-//                    break;
-//                }
-//                if (toi.fazaPoteza.equals(Faza.PLATI)) {
-//                    vm.pozivSO("plati");
-//                    break;
-//                }
-//            case VITEZ:
-//                if (toi.fazaPoteza.equals(Faza.IZBACI_VITEZA)) {
-//                    vm.pozivSO("izbaciViteza");
-//                    break;
-//                }
-//
-//                if (toi.fazaPoteza.equals(Faza.NAPAD)) {
-//                    vm.pozivSO("napad");
-//                    break;
-//                }
-//
-//                if (toi.fazaPoteza.equals(Faza.ODBRANA)) {
-//                    vm.pozivSO("odbrana");
-//                    break;
-//                }
-//            default:
-//                break;
-//        }
     }
 
     private void setRedNapadGornjiIgrac(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {

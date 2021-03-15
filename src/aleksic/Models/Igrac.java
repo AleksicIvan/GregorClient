@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Igrac implements Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
-    private Integer id;
+    private int id;
     private String korisnickoIme;
     private String korisnickaSifra;
     private List<Karta> spil = new ArrayList<>();
@@ -14,7 +14,7 @@ public class Igrac implements Serializable {
     private Talon talon = new Talon(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),  new ArrayList<>(), new ArrayList<>());
     private int zivot = 10;
 
-    public Igrac(Integer id, String korisnickoIme) {
+    public Igrac(int id, String korisnickoIme) {
         this.id = id;
         this.korisnickoIme = korisnickoIme;
     }
@@ -55,11 +55,11 @@ public class Igrac implements Serializable {
         return this.talon;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

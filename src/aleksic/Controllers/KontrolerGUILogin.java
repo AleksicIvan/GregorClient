@@ -32,11 +32,23 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
         Igrac igrac = new Igrac(fxmlLoginController.korisnickoIme.getText(), fxmlLoginController.korisnickaSifra.getText());
         vm.getToi().igr = igrac;
         vm.setTrenutnoUlogovaniIgrac(igrac);
-//        fxmlLoginController.gregorIgra.dodajIgraca(igrac);
+        vm.getToi().poruka = "";
         vm.pozivSO("kreirajIgraca");
 
-        vm.prikaziMain();
-        vm.zatvoriPozornicu(getLoginStage());
+    }
+
+    @Override
+    public void setToi (TransferObjekatIgrac toi) {
+        vm.setToi(toi);
+        if (toi.nazivOperacije.equals("kreirajIgraca")) {
+            if (toi.poruka.startsWith("Greska!")) {
+                fxmlLoginController.getLoginError().setText(toi.poruka);
+            } else {
+                fxmlLoginController.getLoginError().setText("");
+                vm.prikaziMain();
+                vm.zatvoriPozornicu(getLoginStage());
+            }
+        }
     }
 
     public Stage getLoginStage () {
@@ -47,10 +59,5 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
     @Override
     public ViewManager getVm() {
         return vm;
-    }
-
-    @Override
-    public void setToi(TransferObjekatIgrac toi) {
-        vm.setToi(toi);
     }
 }

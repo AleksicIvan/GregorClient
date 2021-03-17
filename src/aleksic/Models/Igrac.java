@@ -1,10 +1,12 @@
 package aleksic.Models;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Igrac implements Serializable {
+public class Igrac extends GeneralDObject implements Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
     private int id;
     private String korisnickoIme;
@@ -93,5 +95,53 @@ public class Igrac implements Serializable {
                 ", spil=" + spil.toString() +
                 ", ruka=" + ruka.toString() +
                 '}';
+    }
+
+    public void setIDIgraca(int idKorisnika) {
+        this.id = idKorisnika;
+    }
+
+    public int getIdIgraca() {
+        return this.id;
+    }
+
+    @Override
+    public String getAtrValue() {
+        return null;
+    }
+
+    @Override
+    public String setAtrValue() {
+        return null;
+    }
+
+    @Override
+    public String getClassName() {
+        return "user_accounts";
+    }
+
+    @Override
+    public String getWhereCondition() {
+        return "username = '" +  korisnickoIme + "' AND password = '" + korisnickaSifra + "'";
+    }
+
+    @Override
+    public String getNameByColumn(int column) {
+        return null;
+    }
+
+    @Override
+    public GeneralDObject getNewRecord(ResultSet rs) throws SQLException {
+        return new Igrac(rs.getInt("id"), rs.getString("username"));
+    }
+
+    @Override
+    public int getPrimaryKey() {
+        return 0;
+    }
+
+    @Override
+    public String getInsertAtributes() {
+        return null;
     }
 }

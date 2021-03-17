@@ -1,5 +1,6 @@
 package aleksic.Controllers;
 
+import aleksic.Controllers.Osluskivaci.OsluskivacPokaziPravila;
 import aleksic.Controllers.Osluskivaci.OsluskivacPreskociFazu;
 import aleksic.Controllers.Osluskivaci.OsluskivacZavrsiPotez;
 import aleksic.Models.Igrac;
@@ -11,6 +12,8 @@ import aleksic.Komponente.CardTestComponent;
 import aleksic.Views.ViewManager;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.List;
@@ -64,6 +67,7 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         this.vm = viewManager;
         this.fxml.getZavrsiPotez().setOnAction(new OsluskivacZavrsiPotez(this));
         this.fxml.getPreskociFazu().setOnAction(new OsluskivacPreskociFazu(this));
+        this.fxml.getPravila().setOnAction(new OsluskivacPokaziPravila(this));
         this.fxml.getZavrsiPotez().setVisible(false);
         this.fxml.getPreskociFazu().setVisible(false);
         TransferObjekatIgrac toi = viewManager.getToi();
@@ -246,6 +250,20 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
     public void onPreskociFazu () {
         System.out.println("preskacem fazu...");
         vm.pozivSO("preskociFazu");
+    }
+
+    public void onPokaziPravila () {
+        System.out.println("prikazujem pravila...");
+        Alert pravilaAlert = new Alert(Alert.AlertType.INFORMATION);
+        pravilaAlert.setTitle("MTG Pravila");
+        pravilaAlert.setHeaderText(null);
+        pravilaAlert.setContentText("Игра је за 2 играча \n" +
+                "Сваки играч има по 16 карата у шпилу \n" +
+                "Сваки играч на почетку има 10 јединица живота \n");
+        Optional<ButtonType> result = pravilaAlert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            pravilaAlert.close();
+        }
     }
 
     public void onZavrsiPotez () {

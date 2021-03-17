@@ -23,6 +23,9 @@ public class FXMLLoginController extends BaseController {
     public Button login;
 
     @FXML
+    public Button cancel;
+
+    @FXML
     public Label loginError;
 
     public FXMLLoginController(Socket soketK, ViewManager viewManager, String nazivFxml) {

@@ -2,6 +2,7 @@ module GregorKlijentUI {
     requires javafx.web;
     requires javafx.graphics;
     requires javafx.fxml;
+    requires java.sql;
 
     opens aleksic.Controllers.Osluskivaci to javafx.graphics, javafx.fxml;
     opens aleksic.Controllers to javafx.graphics, javafx.fxml;

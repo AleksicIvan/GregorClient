@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button fx:id="login" layoutX="293.0" layoutY="308.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="108.0" text="Login" />
+      <Button fx:id="login" layoutX="227.0" layoutY="302.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" text="Login" />
+      <Button fx:id="cancel" layoutX="364.0" layoutY="302.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="93.0" text="Cancel" />
       <Label layoutX="79.0" layoutY="153.0" text="Korisničko ime" />
       <Label layoutX="79.0" layoutY="205.0" text="Šifra" />
       <TextField fx:id="korisnickoIme" layoutX="206.0" layoutY="148.0" prefHeight="17.0" prefWidth="316.0" />

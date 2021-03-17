@@ -1,11 +1,13 @@
 package aleksic.Controllers;
 
+import aleksic.Controllers.Osluskivaci.OsluskivacCancel;
 import aleksic.Controllers.Osluskivaci.OsluskivacLogin;
 import aleksic.Models.Igrac;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Views.ViewManager;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,10 +22,11 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
     public KontrolerGUILogin(FXMLLoginController loginController, ViewManager viewManager) throws IOException {
         OsluskivanjeObavestenja osluskivacObavestenja = OsluskivanjeObavestenja.getInstance();
         osluskivacObavestenja.setOpstiGUIKontroler(this);
+        loginController.login.setOnAction(new OsluskivacLogin(this));
+        loginController.cancel.setOnAction(new OsluskivacCancel(this));
         fxmlLoginController = loginController;
         this.vm = viewManager;
 //        this.toi = viewManager.getToi();
-        loginController.login.setOnAction(new OsluskivacLogin(this));
         this.soketK = viewManager.getSoketK();
     }
 
@@ -34,7 +37,13 @@ public class KontrolerGUILogin extends OpstoGUIKontroler {
         vm.setTrenutnoUlogovaniIgrac(igrac);
         vm.getToi().poruka = "";
         vm.pozivSO("kreirajIgraca");
+    }
 
+    public void onCancelAction () throws IOException {
+        System.out.println("Cancel action initiated!");
+        vm.getToi().poruka = "";
+        vm.pozivSO("odustanak");
+        vm.getCurrentStage().close();
     }
 
     @Override

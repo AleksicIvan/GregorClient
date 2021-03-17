@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -74,6 +75,17 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
 
     @FXML
     private Button preskociFazu;
+
+    @FXML
+    private MenuItem pravila;
+
+    public MenuItem getPravila() {
+        return pravila;
+    }
+
+    public void setPravila(MenuItem pravila) {
+        this.pravila = pravila;
+    }
 
     public Button getPreskociFazu() {
         return preskociFazu;

@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -135,6 +136,8 @@ public class ViewManager {
         setCurrentStage(stage);
         setCurrentScene(scene);
         stage.setScene(scene);
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UTILITY);
         stage.show();
     }
 

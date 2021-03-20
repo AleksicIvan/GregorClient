@@ -127,7 +127,8 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         fxml.resetujNapadDonjegIgraca();
         fxml.resetRedZlatnikaDonjiIgrac();
         fxml.resetRedvitezovaDonjiIgrac();
-
+        fxml.getSpilDonjiIgrac().setText("");
+        fxml.getSpilGornjiIgrac().setText("");
         fxml.resetujRukuDonjegIgraca();
         fxml.resetRedZlatnikaGornjiIgrac();
         fxml.resetRedVitezovaGornjiIgrac();
@@ -146,10 +147,13 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
             System.out.println("prvi je na potezu pa je drugi igrac gore");
             // prvi je na potezu pa je drugi igrac gore
 
-            fxml.postaviTextZivotIgracaGore(String.valueOf(toi.drugiIgrac.getZivot()));
-            fxml.postaviTextZivotIgracaDole(String.valueOf(toi.prviIgrac.getZivot()));
+            fxml.postaviTextZivotIgracaGore("\u2665 " + toi.drugiIgrac.getZivot());
+            fxml.postaviTextZivotIgracaDole("\u2665 " + toi.prviIgrac.getZivot());
             fxml.postaviImeGornjegIgraca(toi.drugiIgrac.vratiKorisnickoIme());
             fxml.postaviImeDonjegIgraca(toi.prviIgrac.vratiKorisnickoIme());
+            fxml.getSpilDonjiIgrac().setText("\uD83C\uDCCF " + toi.spilPrvogIgraca.size());
+            fxml.getSpilGornjiIgrac().setText("\uD83C\uDCCF " + toi.spilDrugogIgraca.size());
+
 
             List<Karta> rukaGornjiIgrac = toi.rukaDrugogIgraca;
             System.out.println("rukaGornjiIgrac: " + rukaGornjiIgrac.size());
@@ -195,10 +199,12 @@ public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
         } else {
             System.out.println("drugi je na potezu pa je prvi igrac gore");
             // drugi je na potezu pa je prvi igrac gore
-            fxml.postaviTextZivotIgracaGore(String.valueOf(toi.prviIgrac.getZivot()));
-            fxml.postaviTextZivotIgracaDole(String.valueOf(toi.drugiIgrac.getZivot()));
+            fxml.postaviTextZivotIgracaGore("\u2665 " + toi.prviIgrac.getZivot());
+            fxml.postaviTextZivotIgracaDole("\u2665 " + toi.drugiIgrac.getZivot());
             fxml.postaviImeGornjegIgraca(toi.prviIgrac.vratiKorisnickoIme());
             fxml.postaviImeDonjegIgraca(toi.drugiIgrac.vratiKorisnickoIme());
+            fxml.getSpilDonjiIgrac().setText("\uD83C\uDCCF " + toi.spilDrugogIgraca.size());
+            fxml.getSpilGornjiIgrac().setText("\uD83C\uDCCF " + toi.spilPrvogIgraca.size());
 
             List<Karta> rukaGornjiIgrac = toi.rukaPrvogIgraca;
             System.out.println("rukaGornjiIgrac: " + rukaGornjiIgrac.size());

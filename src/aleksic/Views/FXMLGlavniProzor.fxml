@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar prefHeight="30.0" prefWidth="800.0">
         <menus>
@@ -25,9 +26,14 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label fx:id="zivotIgracaGore" alignment="CENTER" text="">
+            <Label fx:id="spilGornjiIgrac" alignment="CENTER" prefHeight="17.0" prefWidth="51.0" textAlignment="CENTER">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="zivotIgracaGore" alignment="CENTER" text="" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label fx:id="igracNaPotezuGore" />
@@ -40,9 +46,14 @@
                   <Font size="32.0" />
                </font>
             </Label>
-            <Label fx:id="zivotIgracaDole" alignment="CENTER" text="">
+            <Label fx:id="spilDonjiIgrac" alignment="CENTER" prefHeight="17.0" prefWidth="51.0" textAlignment="CENTER">
                <font>
-                  <Font size="15.0" />
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="zivotIgracaDole" alignment="CENTER" text="" textAlignment="CENTER">
+               <font>
+                  <Font size="18.0" />
                </font>
             </Label>
             <Label fx:id="igracNaPotezuDole" />

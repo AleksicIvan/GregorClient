@@ -79,6 +79,28 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
     @FXML
     private MenuItem pravila;
 
+    @FXML
+    private Label spilGornjiIgrac;
+
+    @FXML
+    private Label spilDonjiIgrac;
+
+    public Label getSpilGornjiIgrac() {
+        return spilGornjiIgrac;
+    }
+
+    public void setSpilGornjiIgrac(Label spilGornjiIgrac) {
+        this.spilGornjiIgrac = spilGornjiIgrac;
+    }
+
+    public Label getSpilDonjiIgrac() {
+        return spilDonjiIgrac;
+    }
+
+    public void setSpilDonjiIgrac(Label spilDonjiIgrac) {
+        this.spilDonjiIgrac = spilDonjiIgrac;
+    }
+
     public MenuItem getPravila() {
         return pravila;
     }

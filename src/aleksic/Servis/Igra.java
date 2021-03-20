@@ -50,11 +50,16 @@ public class Igra extends GeneralDObject implements Serializable {
     }
 
     public void dodajIgraca (Igrac igrac) {
-
         igraci.add(igrac);
-//        if (igraci.size() == 2) {
-//            init(igraci);
-//        }
+    }
+
+
+    public void setIdPobednika (int id) {
+        idPobednika = id;
+    }
+
+    public int getIdPobednika () {
+        return idPobednika;
     }
 
     public void init() {

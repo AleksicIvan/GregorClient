@@ -2,17 +2,13 @@ package aleksic.Controllers;
 
 import aleksic.Controllers.Osluskivaci.OsluskivacCancel;
 import aleksic.Controllers.Osluskivaci.OsluskivacLogin;
-import aleksic.Models.Igrac;
+import aleksic.DomenskiObjekat.Igrac;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Views.ViewManager;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 
 public class KontrolerGUILogin extends OpstoGUIKontroler {
     FXMLLoginController fxmlLoginController;

@@ -3,7 +3,7 @@ package aleksic.Views;
 import aleksic.Controllers.BaseController;
 import aleksic.Controllers.FXMLGlavniProzorDocumentController;
 import aleksic.Controllers.FXMLLoginController;
-import aleksic.Models.Igrac;
+import aleksic.DomenskiObjekat.Igrac;
 import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import javafx.fxml.FXMLLoader;

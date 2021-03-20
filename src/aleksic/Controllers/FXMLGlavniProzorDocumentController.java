@@ -1,6 +1,5 @@
 package aleksic.Controllers;
 
-import aleksic.Models.Karta;
 import aleksic.Views.ViewManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -12,7 +11,6 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.util.List;
 
 public class FXMLGlavniProzorDocumentController extends BaseController {
 

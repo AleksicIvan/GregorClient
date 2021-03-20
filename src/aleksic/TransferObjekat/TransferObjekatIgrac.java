@@ -2,9 +2,9 @@ package aleksic.TransferObjekat;
 
 ;
 
-import aleksic.Models.*;
-import aleksic.Servis.Faza;
-import aleksic.Servis.Igra;
+import aleksic.DomenskiObjekat.*;
+import aleksic.DomenskiObjekat.Faza;
+import aleksic.DomenskiObjekat.Igra;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,10 +13,8 @@ public class TransferObjekatIgrac implements Serializable {
     private static final long serialVersionUID = 6529685098267757690L;
     public Igrac igr;
     public Igra igra;
-//    public Igrac pronadjeniIgrac;
     public String poruka;
-    public boolean signal; // signal o uspesnosti izvrsenja operacije.
-    public int indeks = -1;
+    public boolean signal;
     public String nazivOperacije;
     public Karta odigranaKarta;
     public Igrac prviIgrac;

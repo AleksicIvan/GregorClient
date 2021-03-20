@@ -1,6 +1,4 @@
-package aleksic.Servis;
-
-import aleksic.Models.*;
+package aleksic.DomenskiObjekat;
 
 import java.io.Serializable;
 import java.sql.ResultSet;

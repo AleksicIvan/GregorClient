@@ -1,16 +1,15 @@
 package aleksic.Komponente;
 
 import aleksic.Controllers.KontrolerGUIGlavniprozor;
-import aleksic.Models.Igrac;
-import aleksic.Models.Karta;
-import aleksic.Models.Vitez;
-import aleksic.Models.Zlatnik;
-import aleksic.Servis.Faza;
+import aleksic.DomenskiObjekat.Igrac;
+import aleksic.DomenskiObjekat.Karta;
+import aleksic.DomenskiObjekat.Vitez;
+import aleksic.DomenskiObjekat.Zlatnik;
+import aleksic.DomenskiObjekat.Faza;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import aleksic.Views.ViewManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 

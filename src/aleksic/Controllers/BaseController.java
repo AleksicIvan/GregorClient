@@ -1,6 +1,5 @@
 package aleksic.Controllers;
 
-import aleksic.Servis.Igra;
 import aleksic.Views.ViewManager;
 
 import java.net.Socket;

@@ -13,8 +13,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="Igra">
             <items>
-              <MenuItem fx:id="pravila" mnemonicParsing="false" text="Pravila" />
-                  <MenuItem mnemonicParsing="false" text="Kraj" />
+               <MenuItem fx:id="pravila" mnemonicParsing="false" text="Pravila" />
+               <MenuItem mnemonicParsing="false" text="Kraj" />
             </items>
           </Menu>
         </menus>

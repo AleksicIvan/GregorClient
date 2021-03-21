@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class KontrolerGUILogin extends OpstoGUIKontroler {
+public class KontrolerGUILogin extends OpstiGUIKontroler {
     FXMLLoginController fxmlLoginController;
     ViewManager vm;
     TransferObjekatIgrac toi;

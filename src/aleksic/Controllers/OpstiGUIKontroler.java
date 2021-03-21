@@ -8,7 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-abstract public class OpstoGUIKontroler {
+abstract public class OpstiGUIKontroler {
     protected Socket soketK;
     ObjectOutputStream out;
     ObjectInputStream in;

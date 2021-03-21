@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-public class KontrolerGUIGlavniprozor extends OpstoGUIKontroler {
+public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     FXMLGlavniProzorDocumentController fxml;
     ViewManager vm;
     String poruka = "";

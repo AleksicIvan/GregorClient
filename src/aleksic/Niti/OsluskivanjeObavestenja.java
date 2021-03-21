@@ -1,6 +1,6 @@
 package aleksic.Niti;
 
-import aleksic.Controllers.OpstoGUIKontroler;
+import aleksic.Controllers.OpstiGUIKontroler;
 import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgrac;
 import javafx.application.Platform;
@@ -11,7 +11,7 @@ import java.net.Socket;
 
 public class OsluskivanjeObavestenja extends Thread {
     static OsluskivanjeObavestenja instance;
-    OpstoGUIKontroler opstiGUIKontroler;
+    OpstiGUIKontroler opstiGUIKontroler;
     Socket socket;
     ObjectInputStream in;
     TransferObjekatIgrac toi;
@@ -27,7 +27,7 @@ public class OsluskivanjeObavestenja extends Thread {
         return instance;
     }
 
-    public void setOpstiGUIKontroler(OpstoGUIKontroler opstiGUIKontroler) {
+    public void setOpstiGUIKontroler(OpstiGUIKontroler opstiGUIKontroler) {
         this.opstiGUIKontroler = opstiGUIKontroler;
     }
 

@@ -8,9 +8,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.net.Socket;
 
-public class FXMLLoginController extends BaseController {
+public class FXMLLoginController extends OsnovniFXMLKontroler {
     @FXML
     public TextField korisnickoIme;
 
@@ -26,13 +25,13 @@ public class FXMLLoginController extends BaseController {
     @FXML
     public Label loginError;
 
-    public FXMLLoginController(Socket soketK, ViewManager viewManager, String nazivFxml) {
-        super(soketK, viewManager, nazivFxml);
+    public FXMLLoginController(ViewManager viewManager, String nazivFxml) {
+        super(viewManager, nazivFxml);
     }
 
     @FXML
     public void initialize() throws NoSuchFieldException, IllegalArgumentException, IllegalAccessException, IOException {
-        KontrolerGUILogin kngui = new KontrolerGUILogin(this, viewManager);
+        new KontrolerGUILogin(this, viewManager);
     }
 
     public Label getLoginError() {
@@ -41,11 +40,5 @@ public class FXMLLoginController extends BaseController {
 
     public void setLoginError(Label loginError) {
         this.loginError = loginError;
-    }
-
-    @Override
-    public String poruka(String poruka) {
-        System.out.println("Poruka iz LoginKontrolera " + poruka);
-        return "Poruka iz LoginKontrolera " + poruka;
     }
 }

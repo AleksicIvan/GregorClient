@@ -5,6 +5,7 @@ import aleksic.Controllers.Osluskivaci.OsluskivacPreskociFazu;
 import aleksic.Controllers.Osluskivaci.OsluskivacZavrsiPotez;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.DomenskiObjekat.Karta;
+import aleksic.DomenskiObjekat.Zlatnik;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.DomenskiObjekat.Faza;
 import aleksic.TransferObjekat.TransferObjekatIgra;
@@ -14,32 +15,16 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     FXMLGlavniProzorDocumentController fxml;
     ViewManager vm;
-    String poruka = "";
-
-    public void setPoruka(String poruka) {
-        this.poruka = poruka;
-    }
-
-    public String getPoruka() {
-        return poruka;
-    }
 
     public FXMLGlavniProzorDocumentController getFxml() {
         return fxml;
-    }
-
-    public void postaviImeGornjegIgraca (String imeGornjegIgraca) {
-        this.fxml.postaviImeGornjegIgraca(imeGornjegIgraca);
-    }
-
-    public void postaviImeDonjegIgraca (String imeDonjegIgraca) {
-        this.fxml.postaviImeDonjegIgraca(imeDonjegIgraca);
     }
 
     public void postaviLabeluIgracNaPotezuGore (String text) {
@@ -69,6 +54,8 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         this.fxml.getZavrsiPotez().setVisible(false);
         this.fxml.getPreskociFazu().setVisible(false);
         TransferObjekatIgra toi = viewManager.getToi();
+        toi.kliknutiVItezovi = new ArrayList<>();
+        toi.kliknutiZlatnici = new ArrayList<>();
         fxml.postaviImeDonjegIgraca(toi.igr.vratiKorisnickoIme());
         if (toi.igra != null && toi.igra.getIgraci().size() == 0) {
             fxml.postaviImeGornjegIgraca("Čeka se igrač...");
@@ -93,7 +80,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
             Optional<ButtonType> result = krajIgreAlert.showAndWait();
             if (result.get() == ButtonType.OK){
                toi.nazivOperacije = "novaIgra";
-               vm.pozivSO("novaIgra");
+               pozivSO("novaIgra");
                krajIgreAlert.close();
             } else {
                 // ... user chose CANCEL or closed the dialog
@@ -253,7 +240,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
 
     public void onPreskociFazu () {
         System.out.println("preskacem fazu...");
-        vm.pozivSO("preskociFazu");
+        pozivSO("preskociFazu");
     }
 
     public void onPokaziPravila () {
@@ -274,31 +261,31 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         // TODO dodati mogucnost da igrac preskoci fazu
         TransferObjekatIgra toi = vm.getToi();
         if (vm.getToi().fazaPoteza.equals(Faza.IZRACUNAJ_ISHOD)) {
-            vm.pozivSO("izracunajIshod");
+            pozivSO("izracunajIshod");
             return;
         }
         if (vm.getToi().fazaPoteza.equals(Faza.DODELI_KARTU)) {
-            vm.pozivSO("dodeliKartu");
+            pozivSO("dodeliKartu");
             return;
         }
         if (vm.getToi().fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
-            vm.pozivSO("odigrajZlatnik");
+            pozivSO("odigrajZlatnik");
             return;
         }
         if (vm.getToi().fazaPoteza.equals(Faza.PLATI)) {
-            vm.pozivSO("plati");
+            pozivSO("plati");
             return;
         }
         if (vm.getToi().fazaPoteza.equals(Faza.IZBACI_VITEZA)) {
-            vm.pozivSO("izbaciViteza");
+            pozivSO("izbaciViteza");
             return;
         }
         if (vm.getToi().fazaPoteza.equals(Faza.NAPAD)) {
-            vm.pozivSO("napad");
+            pozivSO("napad");
             return;
         }
         if (vm.getToi().fazaPoteza.equals(Faza.ODBRANA)) {
-            vm.pozivSO("odbrana");
+            pozivSO("odbrana");
             return;
         }
     }
@@ -333,6 +320,20 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     @Override
     public ViewManager getVm() {
         return vm;
+    }
+
+    @Override
+    public void pozivSO(String nazivSO) {
+        vm.getToi().nazivOperacije = nazivSO;
+
+        try {
+            System.out.println("Saljem TOI iz Kontroler GUI Logina");
+            out.reset();
+            out.writeObject(vm.getToi());
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     private void setRukuGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {

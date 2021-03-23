@@ -4,21 +4,13 @@ import aleksic.Views.ViewManager;
 
 import java.net.Socket;
 
-public abstract class BaseController {
-    private Socket soketK;
+public class OsnovniFXMLKontroler {
     protected ViewManager viewManager;
     private String nazivFxml;
-    public String poruka;
 
-    public BaseController(Socket soketK, ViewManager viewManager, String nazivFxml) {
+    public OsnovniFXMLKontroler(ViewManager viewManager, String nazivFxml) {
         this.viewManager = viewManager;
         this.nazivFxml = nazivFxml;
-        this.soketK = soketK;
-        this.poruka = "";
-    }
-
-    public Socket getSoketK() {
-        return soketK;
     }
 
     public ViewManager getViewManager() {
@@ -29,13 +21,7 @@ public abstract class BaseController {
         return nazivFxml;
     }
 
-    public String getPoruka() {
-        return poruka;
-    }
-
     public String getFxmlName() {
         return nazivFxml;
     }
-
-    public abstract String poruka(String poruka);
 }

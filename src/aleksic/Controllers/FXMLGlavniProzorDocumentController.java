@@ -10,9 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.net.Socket;
 
-public class FXMLGlavniProzorDocumentController extends BaseController {
+public class FXMLGlavniProzorDocumentController extends OsnovniFXMLKontroler {
 
     @FXML
     private VBox gornjIgracMeni;
@@ -361,19 +360,12 @@ public class FXMLGlavniProzorDocumentController extends BaseController {
         this.donjiIgracRuka.getChildren().remove(vitez);
     }
 
-    public FXMLGlavniProzorDocumentController(Socket soketK, ViewManager viewManager, String nazivFxml) {
-        super(soketK, viewManager, nazivFxml);
+    public FXMLGlavniProzorDocumentController(ViewManager viewManager, String nazivFxml) {
+        super(viewManager, nazivFxml);
     }
 
     @FXML
     public void initialize() throws IllegalArgumentException, IOException {
-        KontrolerGUIGlavniprozor kngui = new KontrolerGUIGlavniprozor(this, viewManager);
-
-    }
-
-    @Override
-    public String poruka(String poruka) {
-        System.out.println("Poruka iz kontrolera glavnog prozora " + poruka);
-        return poruka;
+        new KontrolerGUIGlavniprozor(this, viewManager);
     }
 }

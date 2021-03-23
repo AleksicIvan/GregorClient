@@ -1,10 +1,9 @@
 package aleksic.Views;
 
-import aleksic.Controllers.BaseController;
+import aleksic.Controllers.OsnovniFXMLKontroler;
 import aleksic.Controllers.FXMLGlavniProzorDocumentController;
 import aleksic.Controllers.FXMLLoginController;
 import aleksic.DomenskiObjekat.Igrac;
-import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgra;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,50 +12,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.util.ArrayList;
 
 public class ViewManager {
-    protected Socket soketK;
-    ObjectOutputStream out;
-    ObjectInputStream in;
-    TransferObjekatIgra toi = null;
+    TransferObjekatIgra toi;
     Stage currentStage;
     Scene currentScene;
     Igrac trenutnoUlogovaniIgrac = null;
 
-    public ObjectOutputStream getOut() {
-        return out;
-    }
-
-    public ObjectInputStream getIn() {
-        return in;
-    }
-
-    public ViewManager() throws IOException {
-        soketK = SocketSingleton.getInstance().getSoketK();
-        in = SocketSingleton.getInstance().getIn();
-        out = SocketSingleton.getInstance().getOut();
-        out = SocketSingleton.getInstance().getOut();
+    public ViewManager() {
         toi = new TransferObjekatIgra();
-        toi.kliknutiZlatnici = new ArrayList<>();
-        toi.kliknutiVItezovi = new ArrayList<>();
-        pozivSO("init");
-    }
-
-    public void pozivSO(String nazivSO) {
-        toi.nazivOperacije = nazivSO;
-
-        try {
-            System.out.println("Saljem TOI");
-            out.reset();
-            out.writeObject(toi);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public Igrac getTrenutnoUlogovaniIgrac() {
@@ -83,10 +47,6 @@ public class ViewManager {
         this.currentStage = currentStage;
     }
 
-    public Socket getSoketK() {
-        return soketK;
-    }
-
     public TransferObjekatIgra getToi() {
         return toi;
     }
@@ -97,20 +57,20 @@ public class ViewManager {
 
     public void prikaziLogin() {
         System.out.println("show login window called");
-        BaseController loginController = new FXMLLoginController(soketK, this, "FXMLLogin.fxml");
+        OsnovniFXMLKontroler loginController = new FXMLLoginController(this, "FXMLLogin.fxml");
         initializeStage(loginController);
     }
 
     public void prikaziMain() {
         System.out.println("show main window called");
 
-        BaseController glavniController = new FXMLGlavniProzorDocumentController(soketK,this, "FXMLGlavniProzor.fxml");
+        OsnovniFXMLKontroler glavniController = new FXMLGlavniProzorDocumentController(this, "FXMLGlavniProzor.fxml");
         initializeStage(glavniController);
     }
 
-    private void initializeStage (BaseController baseController) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(baseController.getFxmlName()));
-        fxmlLoader.setController(baseController);
+    private void initializeStage (OsnovniFXMLKontroler osnovniFXMLKontroler) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(osnovniFXMLKontroler.getFxmlName()));
+        fxmlLoader.setController(osnovniFXMLKontroler);
         Parent parent;
         try {
             parent = fxmlLoader.load();

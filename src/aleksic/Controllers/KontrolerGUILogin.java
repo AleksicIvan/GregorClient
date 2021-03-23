@@ -13,7 +13,6 @@ import java.io.IOException;
 public class KontrolerGUILogin extends OpstiGUIKontroler {
     FXMLLoginController fxmlLoginController;
     ViewManager vm;
-    TransferObjekatIgra toi;
 
     public KontrolerGUILogin(FXMLLoginController loginController, ViewManager viewManager) throws IOException {
         OsluskivanjeObavestenja osluskivacObavestenja = OsluskivanjeObavestenja.getInstance();
@@ -22,8 +21,7 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
         loginController.cancel.setOnAction(new OsluskivacCancel(this));
         fxmlLoginController = loginController;
         this.vm = viewManager;
-//        this.toi = viewManager.getToi();
-        this.soketK = viewManager.getSoketK();
+        pozivSO("init");
     }
 
     public void onLoginAction () throws IOException {
@@ -32,13 +30,13 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
         vm.getToi().igr = igrac;
         vm.setTrenutnoUlogovaniIgrac(igrac);
         vm.getToi().poruka = "";
-        vm.pozivSO("kreirajIgraca");
+        pozivSO("kreirajIgraca");
     }
 
     public void onCancelAction () throws IOException {
         System.out.println("Cancel action initiated!");
         vm.getToi().poruka = "";
-        vm.pozivSO("odustanak");
+        pozivSO("odustanak");
         vm.getCurrentStage().close();
     }
 
@@ -59,6 +57,20 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
     public Stage getLoginStage () {
         Stage stage = (Stage) fxmlLoginController.login.getScene().getWindow();
         return stage;
+    }
+
+    @Override
+    public void pozivSO(String nazivSO) {
+        vm.getToi().nazivOperacije = nazivSO;
+
+        try {
+            System.out.println("Saljem TOI iz Kontroler GUI Logina");
+            out.reset();
+            out.writeObject(vm.getToi());
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override

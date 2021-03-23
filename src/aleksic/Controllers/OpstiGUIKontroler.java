@@ -1,6 +1,6 @@
 package aleksic.Controllers;
 
-import aleksic.DomenskiObjekat.Igrac;
+import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgra;
 import aleksic.Views.ViewManager;
 
@@ -14,6 +14,14 @@ abstract public class OpstiGUIKontroler {
     ObjectOutputStream out;
     ObjectInputStream in;
     ViewManager vm;
+
+    public OpstiGUIKontroler() throws IOException {
+        soketK = SocketSingleton.getInstance().getSoketK();
+        in = SocketSingleton.getInstance().getIn();
+        out = SocketSingleton.getInstance().getOut();
+    }
+
+    public abstract void pozivSO(String nazivSO);
 
     public abstract ViewManager getVm();
 

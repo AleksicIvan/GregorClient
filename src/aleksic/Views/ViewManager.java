@@ -5,7 +5,7 @@ import aleksic.Controllers.FXMLGlavniProzorDocumentController;
 import aleksic.Controllers.FXMLLoginController;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.Servis.SocketSingleton;
-import aleksic.TransferObjekat.TransferObjekatIgrac;
+import aleksic.TransferObjekat.TransferObjekatIgra;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +22,7 @@ public class ViewManager {
     protected Socket soketK;
     ObjectOutputStream out;
     ObjectInputStream in;
-    TransferObjekatIgrac toi = null;
+    TransferObjekatIgra toi = null;
     Stage currentStage;
     Scene currentScene;
     Igrac trenutnoUlogovaniIgrac = null;
@@ -40,7 +40,7 @@ public class ViewManager {
         in = SocketSingleton.getInstance().getIn();
         out = SocketSingleton.getInstance().getOut();
         out = SocketSingleton.getInstance().getOut();
-        toi = new TransferObjekatIgrac();
+        toi = new TransferObjekatIgra();
         toi.kliknutiZlatnici = new ArrayList<>();
         toi.kliknutiVItezovi = new ArrayList<>();
         pozivSO("init");
@@ -87,11 +87,11 @@ public class ViewManager {
         return soketK;
     }
 
-    public TransferObjekatIgrac getToi() {
+    public TransferObjekatIgra getToi() {
         return toi;
     }
 
-    public void setToi(TransferObjekatIgrac toi) {
+    public void setToi(TransferObjekatIgra toi) {
         this.toi = toi;
     }
 

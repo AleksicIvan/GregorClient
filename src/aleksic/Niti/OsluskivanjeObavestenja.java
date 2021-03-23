@@ -2,7 +2,7 @@ package aleksic.Niti;
 
 import aleksic.Controllers.OpstiGUIKontroler;
 import aleksic.Servis.SocketSingleton;
-import aleksic.TransferObjekat.TransferObjekatIgrac;
+import aleksic.TransferObjekat.TransferObjekatIgra;
 import javafx.application.Platform;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class OsluskivanjeObavestenja extends Thread {
     OpstiGUIKontroler opstiGUIKontroler;
     Socket socket;
     ObjectInputStream in;
-    TransferObjekatIgrac toi;
+    TransferObjekatIgra toi;
 
     private OsluskivanjeObavestenja() {
         start();
@@ -36,7 +36,7 @@ public class OsluskivanjeObavestenja extends Thread {
     public void run() {
         while (true) {
             try {
-                toi = (TransferObjekatIgrac) SocketSingleton.getInstance().getIn().readObject();
+                toi = (TransferObjekatIgra) SocketSingleton.getInstance().getIn().readObject();
                 System.out.println("toi poruka " + toi.poruka);
             } catch (IOException e) {
                 System.out.println("pb 1");

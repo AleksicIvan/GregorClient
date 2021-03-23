@@ -6,7 +6,7 @@ import aleksic.DomenskiObjekat.Karta;
 import aleksic.DomenskiObjekat.Vitez;
 import aleksic.DomenskiObjekat.Zlatnik;
 import aleksic.DomenskiObjekat.Faza;
-import aleksic.TransferObjekat.TransferObjekatIgrac;
+import aleksic.TransferObjekat.TransferObjekatIgra;
 import aleksic.Views.ViewManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,7 @@ import java.io.IOException;
 public class CardTestComponent extends VBox {
     FXMLCardTest fxmlCardTest;
     ViewManager vm;
-    TransferObjekatIgrac toi;
+    TransferObjekatIgra toi;
     Karta trenutnaKarta;
     KontrolerGUIGlavniprozor guiKontroler;
     Igrac gornjiIgrac;
@@ -166,7 +166,7 @@ public class CardTestComponent extends VBox {
         }
     }
 
-    public void prikazikartu(Karta karta, TransferObjekatIgrac toi) {
+    public void prikazikartu(Karta karta, TransferObjekatIgra toi) {
         trenutnaKarta = karta;
         Igrac ulogovaniIgrac = toi.igr;
         Igrac igracNaPotezu = toi.igracNaPotezu;

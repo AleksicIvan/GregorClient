@@ -4,7 +4,7 @@ import aleksic.Controllers.Osluskivaci.OsluskivacCancel;
 import aleksic.Controllers.Osluskivaci.OsluskivacLogin;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.Niti.OsluskivanjeObavestenja;
-import aleksic.TransferObjekat.TransferObjekatIgrac;
+import aleksic.TransferObjekat.TransferObjekatIgra;
 import aleksic.Views.ViewManager;
 import javafx.stage.Stage;
 
@@ -13,7 +13,7 @@ import java.io.IOException;
 public class KontrolerGUILogin extends OpstiGUIKontroler {
     FXMLLoginController fxmlLoginController;
     ViewManager vm;
-    TransferObjekatIgrac toi;
+    TransferObjekatIgra toi;
 
     public KontrolerGUILogin(FXMLLoginController loginController, ViewManager viewManager) throws IOException {
         OsluskivanjeObavestenja osluskivacObavestenja = OsluskivanjeObavestenja.getInstance();
@@ -43,7 +43,7 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
     }
 
     @Override
-    public void setToi (TransferObjekatIgrac toi) {
+    public void setToi (TransferObjekatIgra toi) {
         vm.setToi(toi);
         if (toi.nazivOperacije.equals("kreirajIgraca")) {
             if (toi.poruka.startsWith("Greska!")) {

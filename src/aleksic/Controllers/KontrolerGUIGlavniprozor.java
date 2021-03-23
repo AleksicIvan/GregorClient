@@ -7,7 +7,7 @@ import aleksic.DomenskiObjekat.Igrac;
 import aleksic.DomenskiObjekat.Karta;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.DomenskiObjekat.Faza;
-import aleksic.TransferObjekat.TransferObjekatIgrac;
+import aleksic.TransferObjekat.TransferObjekatIgra;
 import aleksic.Komponente.CardTestComponent;
 import aleksic.Views.ViewManager;
 import javafx.scene.control.Alert;
@@ -68,7 +68,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         this.fxml.getPravila().setOnAction(new OsluskivacPokaziPravila(this));
         this.fxml.getZavrsiPotez().setVisible(false);
         this.fxml.getPreskociFazu().setVisible(false);
-        TransferObjekatIgrac toi = viewManager.getToi();
+        TransferObjekatIgra toi = viewManager.getToi();
         fxml.postaviImeDonjegIgraca(toi.igr.vratiKorisnickoIme());
         if (toi.igra != null && toi.igra.getIgraci().size() == 0) {
             fxml.postaviImeGornjegIgraca("Čeka se igrač...");
@@ -80,7 +80,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     @Override
-    public void setToi(TransferObjekatIgrac toi) throws IOException {
+    public void setToi(TransferObjekatIgra toi) throws IOException {
         // TODO implementiraj freezeRow feature, posle svakog poteza onemoguci elemente/karte u odgovarajucem redu da budu kliknute
         System.out.println("setToi je pozvan");
 
@@ -105,7 +105,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         System.out.println("setToi izvrsen");
     }
 
-    private boolean rerender(TransferObjekatIgrac toi) throws IOException {
+    private boolean rerender(TransferObjekatIgra toi) throws IOException {
         System.out.println("rerender je pozvan");
         System.out.println("sizeRedVitezovaPrviIgrac " + toi.sizeRedVitezovaPrviIgrac);
         System.out.println("redVitezovaPrviIgrac " + toi.redVitezovaPrviIgrac);
@@ -272,7 +272,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
 
     public void onZavrsiPotez () {
         // TODO dodati mogucnost da igrac preskoci fazu
-        TransferObjekatIgrac toi = vm.getToi();
+        TransferObjekatIgra toi = vm.getToi();
         if (vm.getToi().fazaPoteza.equals(Faza.IZRACUNAJ_ISHOD)) {
             vm.pozivSO("izracunajIshod");
             return;
@@ -303,7 +303,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         }
     }
 
-    private void setRedNapadGornjiIgrac(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
+    private void setRedNapadGornjiIgrac(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -314,7 +314,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         fxml.dodajVitezaUNapadGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setRedNapadDonjiIgrac(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
+    private void setRedNapadDonjiIgrac(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -335,7 +335,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         return vm;
     }
 
-    private void setRukuGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
+    private void setRukuGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -346,7 +346,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         fxml.postaviIzvuceneKarteGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setRukuDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
+    private void setRukuDonjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -362,7 +362,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         fxml.postaviIzvuceneKarteDonjiIgrac(kontrolerCardTest);
     }
 
-    private void setZlatnikeGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
+    private void setZlatnikeGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -375,7 +375,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         fxml.dodajZlatnikGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setVitezoveGornjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
+    private void setVitezoveGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -388,7 +388,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         fxml.dodajVitezaGornjiIgrac(kontrolerCardTest);
     }
 
-    private void setZlatnikeDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
+    private void setZlatnikeDonjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
@@ -398,7 +398,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         fxml.dodajZlatnikDonjiIgrac(kontrolerCardTest);
     }
 
-    private void setVitezoveDonjegIgraca(Karta k, TransferObjekatIgrac toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
+    private void setVitezoveDonjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
         CardTestComponent kontrolerCardTest = new CardTestComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);

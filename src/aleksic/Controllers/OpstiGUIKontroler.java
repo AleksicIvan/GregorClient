@@ -1,6 +1,7 @@
 package aleksic.Controllers;
 
-import aleksic.TransferObjekat.TransferObjekatIgrac;
+import aleksic.DomenskiObjekat.Igrac;
+import aleksic.TransferObjekat.TransferObjekatIgra;
 import aleksic.Views.ViewManager;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ abstract public class OpstiGUIKontroler {
 
     public abstract ViewManager getVm();
 
-    public abstract void setToi(TransferObjekatIgrac toi) throws IOException;
+    public abstract void setToi(TransferObjekatIgra toi) throws IOException;
 
     public Socket getSoketK() {
         return soketK;

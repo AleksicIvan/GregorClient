@@ -17,7 +17,7 @@ public class OsluskivacLogin implements EventHandler {
     public void handle(Event event) {
         try {
             loginController.onLoginAction();
-        } catch (IOException e) {
+        } catch (IOException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }

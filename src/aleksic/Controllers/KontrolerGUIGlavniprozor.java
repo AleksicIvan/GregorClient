@@ -53,9 +53,8 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         this.fxml.getPravila().setOnAction(new OsluskivacPokaziPravila(this));
         this.fxml.getZavrsiPotez().setVisible(false);
         this.fxml.getPreskociFazu().setVisible(false);
-        TransferObjekatIgra toi = viewManager.getToi();
-        toi.kliknutiVItezovi = new ArrayList<>();
-        toi.kliknutiZlatnici = new ArrayList<>();
+        setTransferObjekatIgra(viewManager.getToi());
+
         fxml.postaviImeDonjegIgraca(toi.igr.vratiKorisnickoIme());
         if (toi.igra != null && toi.igra.getIgraci().size() == 0) {
             fxml.postaviImeGornjegIgraca("Čeka se igrač...");
@@ -72,6 +71,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         System.out.println("setToi je pozvan");
 
         vm.setToi(toi);
+        setTransferObjekatIgra(toi);
         if (toi.poruka.contains("KRAJ IGRE")) {
             Alert krajIgreAlert = new Alert(Alert.AlertType.CONFIRMATION);
             krajIgreAlert.setTitle(null);
@@ -259,32 +259,32 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
 
     public void onZavrsiPotez () {
         // TODO dodati mogucnost da igrac preskoci fazu
-        TransferObjekatIgra toi = vm.getToi();
-        if (vm.getToi().fazaPoteza.equals(Faza.IZRACUNAJ_ISHOD)) {
+//        TransferObjekatIgra toi = toi;
+        if (toi.fazaPoteza.equals(Faza.IZRACUNAJ_ISHOD)) {
             pozivSO("izracunajIshod");
             return;
         }
-        if (vm.getToi().fazaPoteza.equals(Faza.DODELI_KARTU)) {
+        if (toi.fazaPoteza.equals(Faza.DODELI_KARTU)) {
             pozivSO("dodeliKartu");
             return;
         }
-        if (vm.getToi().fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
+        if (toi.fazaPoteza.equals(Faza.IZBACI_ZLATNIK)) {
             pozivSO("odigrajZlatnik");
             return;
         }
-        if (vm.getToi().fazaPoteza.equals(Faza.PLATI)) {
+        if (toi.fazaPoteza.equals(Faza.PLATI)) {
             pozivSO("plati");
             return;
         }
-        if (vm.getToi().fazaPoteza.equals(Faza.IZBACI_VITEZA)) {
+        if (toi.fazaPoteza.equals(Faza.IZBACI_VITEZA)) {
             pozivSO("izbaciViteza");
             return;
         }
-        if (vm.getToi().fazaPoteza.equals(Faza.NAPAD)) {
+        if (toi.fazaPoteza.equals(Faza.NAPAD)) {
             pozivSO("napad");
             return;
         }
-        if (vm.getToi().fazaPoteza.equals(Faza.ODBRANA)) {
+        if (toi.fazaPoteza.equals(Faza.ODBRANA)) {
             pozivSO("odbrana");
             return;
         }
@@ -324,12 +324,12 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
 
     @Override
     public void pozivSO(String nazivSO) {
-        vm.getToi().nazivOperacije = nazivSO;
+        toi.nazivOperacije = nazivSO;
 
         try {
             System.out.println("Saljem TOI iz Kontroler GUI Logina");
             out.reset();
-            out.writeObject(vm.getToi());
+            out.writeObject(toi);
 
         } catch (IOException ex) {
             ex.printStackTrace();

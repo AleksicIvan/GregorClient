@@ -8,12 +8,14 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
 abstract public class OpstiGUIKontroler {
     protected Socket soketK;
     ObjectOutputStream out;
     ObjectInputStream in;
     ViewManager vm;
+    TransferObjekatIgra toi;
 
     public OpstiGUIKontroler() throws IOException {
         soketK = SocketSingleton.getInstance().getSoketK();
@@ -26,6 +28,16 @@ abstract public class OpstiGUIKontroler {
     public abstract ViewManager getVm();
 
     public abstract void setToi(TransferObjekatIgra toi) throws IOException;
+
+    public TransferObjekatIgra getTransferObjekatIgra() {
+        return toi;
+    }
+
+    public void setTransferObjekatIgra(TransferObjekatIgra transferObjekatIgra) {
+        this.toi = transferObjekatIgra;
+        this.toi.kliknutiZlatnici = new ArrayList<>();
+        this.toi.kliknutiVItezovi = new ArrayList<>();
+    }
 
     public Socket getSoketK() {
         return soketK;

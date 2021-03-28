@@ -2,16 +2,20 @@ package aleksic.Controllers;
 
 import aleksic.Controllers.Osluskivaci.OsluskivacCancel;
 import aleksic.Controllers.Osluskivaci.OsluskivacLogin;
+import aleksic.Controllers.Osluskivaci.OsluskivacRegister;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.TransferObjekat.TransferObjekatIgra;
 import aleksic.Views.ViewManager;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Optional;
 
 public class KontrolerGUILogin extends OpstiGUIKontroler {
     FXMLLoginController fxmlLoginController;
@@ -22,11 +26,14 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
         osluskivacObavestenja.setOpstiGUIKontroler(this);
         loginController.login.setOnAction(new OsluskivacLogin(this));
         loginController.cancel.setOnAction(new OsluskivacCancel(this));
+        loginController.register.setOnAction(new OsluskivacRegister(this));
         fxmlLoginController = loginController;
         this.vm = viewManager;
         setTransferObjekatIgra(viewManager.getToi());
         pozivSO("init");
     }
+
+
 
     public void onLoginAction () throws IOException, IllegalAccessException {
         System.out.println("Login action initiated!");
@@ -42,6 +49,23 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
         toi.poruka = "";
         pozivSO("odustanak");
         vm.getCurrentStage().close();
+    }
+
+    public void onRegisterAction () throws IOException, IllegalAccessException {
+        System.out.println("Register action initiated!");
+        toi.poruka = "";
+        if (!fxmlLoginController.korisnickoIme.getText().isEmpty() || !fxmlLoginController.korisnickaSifra.getText().isEmpty()) {
+            Igrac noviIgrac = napraviIgraca(fxmlLoginController);
+            toi.igr = noviIgrac;
+            pozivSO("registracija");
+        } else {
+            Alert neuspesnaRegistracija = new Alert(Alert.AlertType.CONFIRMATION);
+            neuspesnaRegistracija.setTitle(null);
+            neuspesnaRegistracija.setHeaderText(null);
+            neuspesnaRegistracija.setContentText("Morate uneti korisničko ime i šifru!");
+            neuspesnaRegistracija.showAndWait();
+            neuspesnaRegistracija.close();
+        }
     }
 
     // PRIMER REFLEKSIJE
@@ -76,6 +100,35 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
                 fxmlLoginController.getLoginError().setText("");
                 vm.prikaziMain();
                 vm.zatvoriPozornicu(getLoginStage());
+            }
+        }
+
+        if (toi.nazivOperacije.equals("registracija")) {
+            if (toi.poruka.startsWith("Greska!")) {
+                fxmlLoginController.getLoginError().setText(toi.poruka);
+                Alert neuspesnaRegistracija = new Alert(Alert.AlertType.CONFIRMATION);
+                neuspesnaRegistracija.setTitle(null);
+                neuspesnaRegistracija.setHeaderText(null);
+                neuspesnaRegistracija.setContentText(toi.poruka);
+                neuspesnaRegistracija.showAndWait();
+                neuspesnaRegistracija.close();
+            } else {
+                fxmlLoginController.getLoginError().setText("");
+                Alert uspesnaRegistracija = new Alert(Alert.AlertType.CONFIRMATION);
+                uspesnaRegistracija.setTitle(null);
+                uspesnaRegistracija.setHeaderText(null);
+                uspesnaRegistracija.setContentText(toi.poruka);
+                Optional<ButtonType> result = uspesnaRegistracija.showAndWait();
+                if (result.get() == ButtonType.OK){
+                    toi.nazivOperacije = "kreirajIgraca";
+                    toi.poruka = "";
+                    pozivSO("kreirajIgraca");
+                } else {
+                    // ... user chose CANCEL or closed the dialog
+                    uspesnaRegistracija.close();
+                }
+                vm.zatvoriPozornicu(getLoginStage());
+                vm.prikaziMain();
             }
         }
     }

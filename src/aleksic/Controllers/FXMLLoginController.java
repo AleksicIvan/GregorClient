@@ -23,6 +23,9 @@ public class FXMLLoginController extends OsnovniFXMLKontroler {
     public Button cancel;
 
     @FXML
+    public Button register;
+
+    @FXML
     public Label loginError;
 
     public FXMLLoginController(ViewManager viewManager, String nazivFxml) {

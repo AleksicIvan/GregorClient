@@ -6,7 +6,7 @@ import aleksic.DomenskiObjekat.Zlatnik;
 
 
 public class ObradiKlikNaKartuZlatnik extends ObradiKlikNaKartu<Zlatnik> {
-    public ObradiKlikNaKartuZlatnik(CardTestComponent komponenta) {
+    public ObradiKlikNaKartuZlatnik(CardComponent komponenta) {
         super(komponenta);
     }
 

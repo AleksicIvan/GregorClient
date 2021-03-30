@@ -1,6 +1,6 @@
-package aleksic.Controllers.Osluskivaci;
+package aleksic.Kontroleri.Osluskivaci;
 
-import aleksic.Controllers.KontrolerGUIGlavniprozor;
+import aleksic.Kontroleri.KontrolerGUIGlavniprozor;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 

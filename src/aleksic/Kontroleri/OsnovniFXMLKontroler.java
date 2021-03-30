@@ -1,8 +1,6 @@
-package aleksic.Controllers;
+package aleksic.Kontroleri;
 
-import aleksic.Views.ViewManager;
-
-import java.net.Socket;
+import aleksic.Pogledi.ViewManager;
 
 public class OsnovniFXMLKontroler {
     protected ViewManager viewManager;

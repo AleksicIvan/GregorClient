@@ -1,8 +1,8 @@
-package aleksic.Views;
+package aleksic.Pogledi;
 
-import aleksic.Controllers.OsnovniFXMLKontroler;
-import aleksic.Controllers.FXMLGlavniProzorDocumentController;
-import aleksic.Controllers.FXMLLoginController;
+import aleksic.Kontroleri.OsnovniFXMLKontroler;
+import aleksic.Kontroleri.FXMLGlavniProzorDocumentController;
+import aleksic.Kontroleri.FXMLLoginController;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.TransferObjekat.TransferObjekatIgra;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class ViewManager {
     TransferObjekatIgra toi;

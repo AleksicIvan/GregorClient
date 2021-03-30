@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.shape.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="800.0" stylesheets="@../Stil/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar prefHeight="30.0" prefWidth="800.0">
         <menus>
           <Menu mnemonicParsing="false" text="Igra">
             <items>
                <MenuItem fx:id="pravila" mnemonicParsing="false" text="Pravila" />
-               <MenuItem mnemonicParsing="false" text="Kraj" />
+               <MenuItem fx:id="krajIgre" mnemonicParsing="false" text="Kraj" />
             </items>
           </Menu>
         </menus>

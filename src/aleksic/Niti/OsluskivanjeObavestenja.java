@@ -1,6 +1,6 @@
 package aleksic.Niti;
 
-import aleksic.Controllers.OpstiGUIKontroler;
+import aleksic.Kontroleri.OpstiGUIKontroler;
 import aleksic.Servis.SocketSingleton;
 import aleksic.TransferObjekat.TransferObjekatIgra;
 import javafx.application.Platform;
@@ -53,6 +53,7 @@ public class OsluskivanjeObavestenja extends Thread {
             }
             Platform.runLater(() -> {
                 try {
+                    if (toi.nazivOperacije.equals("odustanak")) return;
                     opstiGUIKontroler.setToi(toi);
                 } catch (IOException e) {
                     System.out.println("pb 3");

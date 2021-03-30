@@ -1,6 +1,6 @@
 package aleksic;
 
-import aleksic.Views.ViewManager;
+import aleksic.Pogledi.ViewManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

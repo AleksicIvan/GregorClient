@@ -1,12 +1,12 @@
-package aleksic.Controllers;
+package aleksic.Kontroleri;
 
-import aleksic.Controllers.Osluskivaci.OsluskivacCancel;
-import aleksic.Controllers.Osluskivaci.OsluskivacLogin;
-import aleksic.Controllers.Osluskivaci.OsluskivacRegister;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacCancel;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacLogin;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacRegister;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.TransferObjekat.TransferObjekatIgra;
-import aleksic.Views.ViewManager;
+import aleksic.Pogledi.ViewManager;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.PasswordField;
@@ -124,7 +124,6 @@ public class KontrolerGUILogin extends OpstiGUIKontroler {
                     toi.poruka = "";
                     pozivSO("kreirajIgraca");
                 } else {
-                    // ... user chose CANCEL or closed the dialog
                     uspesnaRegistracija.close();
                 }
                 vm.zatvoriPozornicu(getLoginStage());

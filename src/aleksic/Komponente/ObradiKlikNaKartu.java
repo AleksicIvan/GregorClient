@@ -2,8 +2,8 @@ package aleksic.Komponente;
 
 
 public abstract class ObradiKlikNaKartu<T> {
-    CardTestComponent komponenta;
-    public ObradiKlikNaKartu(CardTestComponent komponenta) {
+    CardComponent komponenta;
+    public ObradiKlikNaKartu(CardComponent komponenta) {
         this.komponenta = komponenta;
         obradi((T) komponenta.trenutnaKarta);
     }

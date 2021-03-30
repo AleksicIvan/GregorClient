@@ -5,7 +5,7 @@ import aleksic.DomenskiObjekat.Vitez;
 
 
 public class ObradiKlikNaKartuVitez extends ObradiKlikNaKartu<Vitez> {
-    public ObradiKlikNaKartuVitez(CardTestComponent komponenta) {
+    public ObradiKlikNaKartuVitez(CardComponent komponenta) {
         super(komponenta);
     }
 

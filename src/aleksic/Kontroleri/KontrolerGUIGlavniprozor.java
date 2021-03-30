@@ -1,21 +1,20 @@
-package aleksic.Controllers;
+package aleksic.Kontroleri;
 
-import aleksic.Controllers.Osluskivaci.OsluskivacPokaziPravila;
-import aleksic.Controllers.Osluskivaci.OsluskivacPreskociFazu;
-import aleksic.Controllers.Osluskivaci.OsluskivacZavrsiPotez;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacKrajIgre;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacPokaziPravila;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacPreskociFazu;
+import aleksic.Kontroleri.Osluskivaci.OsluskivacZavrsiPotez;
 import aleksic.DomenskiObjekat.Igrac;
 import aleksic.DomenskiObjekat.Karta;
-import aleksic.DomenskiObjekat.Zlatnik;
 import aleksic.Niti.OsluskivanjeObavestenja;
 import aleksic.DomenskiObjekat.Faza;
 import aleksic.TransferObjekat.TransferObjekatIgra;
-import aleksic.Komponente.CardTestComponent;
-import aleksic.Views.ViewManager;
+import aleksic.Komponente.CardComponent;
+import aleksic.Pogledi.ViewManager;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +50,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         this.fxml.getZavrsiPotez().setOnAction(new OsluskivacZavrsiPotez(this));
         this.fxml.getPreskociFazu().setOnAction(new OsluskivacPreskociFazu(this));
         this.fxml.getPravila().setOnAction(new OsluskivacPokaziPravila(this));
+        this.fxml.getKrajIgre().setOnAction(new OsluskivacKrajIgre(this));
         this.fxml.getZavrsiPotez().setVisible(false);
         this.fxml.getPreskociFazu().setVisible(false);
         setTransferObjekatIgra(viewManager.getToi());
@@ -72,11 +72,11 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
 
         vm.setToi(toi);
         setTransferObjekatIgra(toi);
-        if (toi.poruka.contains("KRAJ IGRE")) {
+        if (toi.poruka.contains("Kraj igre")) {
             Alert krajIgreAlert = new Alert(Alert.AlertType.CONFIRMATION);
             krajIgreAlert.setTitle(null);
             krajIgreAlert.setHeaderText(null);
-            krajIgreAlert.setContentText("Kraj igre!!! Da li zelite novu igru?");
+            krajIgreAlert.setContentText(toi.poruka);
             Optional<ButtonType> result = krajIgreAlert.showAndWait();
             if (result.get() == ButtonType.OK){
                toi.nazivOperacije = "novaIgra";
@@ -248,15 +248,42 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         Alert pravilaAlert = new Alert(Alert.AlertType.INFORMATION);
         pravilaAlert.setTitle("MTG Pravila");
         pravilaAlert.setHeaderText(null);
-        pravilaAlert.setContentText("Игра је за 2 играча \n" +
-                "Сваки играч има по 16 карата у шпилу \n" +
-                "Сваки играч на почетку има 10 јединица живота \n");
+        pravilaAlert.setContentText("Igra je za 2 igrača. \n" +
+                "Svaki igrač ima po 16 karata u špilu. \n" +
+                "Špil čine dve vrste karata: \n" +
+                "Zlatnici, kojima se plaća odigravanje Vitezova i\n" +
+                "Vitezovi, kao osnovne borbene jednice. \n" +
+                "Svaki Vitez ima tri karakteristike: Napad: 1, Odbrana: 1 i Cena: 1. \n" +
+                "Svaki igrač ima 10 jednica života na početku. \n" +
+                "Svakom igraču je na početku podeljeno po 5 karata iz špila. \n" +
+                "Igra autonomno odlučuje koji je igrač prvi na potezu. \n" +
+                "Igra se tako što se igrači smenjuju u odigravanju poteza. \n" +
+                "Svaki potez se sastoji iz 7 faza: \n" +
+                "Dodeli kartu, Izbaci Zlatnik, Plati, Izbaci Viteza, Napad, Odbrana i Izračunaj ishod. \n" +
+                "Izuzetak od pomenutog pravila je prvi potez igre, kada igrač na potezu preksače faze Dodeli kartu i Napad. \n" +
+                "U slučaju da igrač nema Zlatnik u ruci, preskače fazu Izbaci zlatnik. \n" +
+                "U slučaju da igrač nema Zlatnik u redu Zlatnika, preskače fazu Plati. \n" +
+                "U slučaju da igrač nema Vitezova u ruci, preskače fazu Izbaci Viteza. \n" +
+                "U slučaju da igrač nema Vitezova u redu Vitezova, preskače fazu Napad ili Odbrana. \n" +
+                "U fazi Izbaci Viteza, igrač može izbaciti na talon onoliko Vitezova koliko je platio Zlatnicima u prethodnoj fazi. \n" +
+                "Igrač je dužan da nakon svakog odigravanja karata obavesti protivnika klikom na dugme Završi ili Preskoči. \n" +
+                "U fazi Izračunaj ishod igra će suočiti svakog Viteza iz reda Napad sa Vitezom iz reda Odbrana i \n" +
+                "upoređivanjem karakteristika Napad/Odbrana svakog Viteza pojedinačno izbaciti iz igre. \n" +
+                "Ukoliko nakon izbacivanja iz igre u redu Napad preostane neki Vitez, njihove karakteristke Napad \n" +
+                "se sabiraju i ukupan zbir se oduzima od ukupnog broja jedinica života igrača u odbrani. \n" +
+                "Igra se završava ukoliko bilo koji od igrača ima 0 ili manje jedinica života \n" +
+                "odnosno ostane bez karata u špilu. \n"
+        );
         Optional<ButtonType> result = pravilaAlert.showAndWait();
         if (result.get() == ButtonType.OK){
             pravilaAlert.close();
         }
     }
 
+    public void onKrajIgre () {
+        pozivSO("odustanak");
+        this.vm.zatvoriPozornicu(fxml.getViewManager().getCurrentStage());
+    }
     public void onZavrsiPotez () {
         // TODO dodati mogucnost da igrac preskoci fazu
 //        TransferObjekatIgra toi = toi;
@@ -291,7 +318,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setRedNapadGornjiIgrac(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -302,7 +329,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setRedNapadDonjiIgrac(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -337,7 +364,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setRukuGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -348,7 +375,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setRukuDonjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -364,7 +391,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setZlatnikeGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -377,7 +404,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setVitezoveGornjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String igracNaPotezu) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -390,7 +417,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setZlatnikeDonjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);
@@ -400,7 +427,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
     }
 
     private void setVitezoveDonjegIgraca(Karta k, TransferObjekatIgra toi, Igrac gornjiIgrac, Igrac donjiIgrac, String drugiIgrac) throws IOException {
-        CardTestComponent kontrolerCardTest = new CardTestComponent();
+        CardComponent kontrolerCardTest = new CardComponent();
         kontrolerCardTest.setGuiKontroler(this);
         kontrolerCardTest.setGornjiIgrac(gornjiIgrac);
         kontrolerCardTest.setDonjiIgrac(donjiIgrac);

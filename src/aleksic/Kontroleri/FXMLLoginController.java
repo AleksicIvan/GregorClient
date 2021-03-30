@@ -1,6 +1,6 @@
-package aleksic.Controllers;
+package aleksic.Kontroleri;
 
-import aleksic.Views.ViewManager;
+import aleksic.Pogledi.ViewManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

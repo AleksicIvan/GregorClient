@@ -10,7 +10,7 @@ public class FXMLCardTest implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            CardTestComponent knct = new CardTestComponent();
+            CardComponent knct = new CardComponent();
         } catch (IOException e) {
             e.printStackTrace();
         }

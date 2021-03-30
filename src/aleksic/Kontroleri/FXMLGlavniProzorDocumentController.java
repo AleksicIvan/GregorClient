@@ -1,6 +1,6 @@
-package aleksic.Controllers;
+package aleksic.Kontroleri;
 
-import aleksic.Views.ViewManager;
+import aleksic.Pogledi.ViewManager;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -77,6 +77,9 @@ public class FXMLGlavniProzorDocumentController extends OsnovniFXMLKontroler {
     private MenuItem pravila;
 
     @FXML
+    private MenuItem krajIgre;
+
+    @FXML
     private Label spilGornjiIgrac;
 
     @FXML
@@ -104,6 +107,14 @@ public class FXMLGlavniProzorDocumentController extends OsnovniFXMLKontroler {
 
     public void setPravila(MenuItem pravila) {
         this.pravila = pravila;
+    }
+
+    public MenuItem getKrajIgre() {
+        return krajIgre;
+    }
+
+    public void setKrajIgre(MenuItem krajIgre) {
+        this.krajIgre = krajIgre;
     }
 
     public Button getPreskociFazu() {

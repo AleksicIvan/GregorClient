@@ -1,15 +1,13 @@
-package aleksic.Controllers.Osluskivaci;
+package aleksic.Kontroleri.Osluskivaci;
 
-import aleksic.Komponente.CardTestComponent;
+import aleksic.Komponente.CardComponent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 
-import java.io.IOException;
-
 public class OsluskivacCardTest implements EventHandler {
-    CardTestComponent kontrolerCardTest;
+    CardComponent kontrolerCardTest;
 
-    public OsluskivacCardTest(CardTestComponent kontrolerCardTest) {
+    public OsluskivacCardTest(CardComponent kontrolerCardTest) {
         this.kontrolerCardTest = kontrolerCardTest;
     }
 

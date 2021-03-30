@@ -4,11 +4,11 @@ module GregorKlijentUI {
     requires javafx.fxml;
     requires java.sql;
 
-    opens aleksic.Controllers.Osluskivaci to javafx.graphics, javafx.fxml;
-    opens aleksic.Controllers to javafx.graphics, javafx.fxml;
+    opens aleksic.Kontroleri.Osluskivaci to javafx.graphics, javafx.fxml;
+    opens aleksic.Kontroleri to javafx.graphics, javafx.fxml;
     opens aleksic.DomenskiObjekat to javafx.graphics, javafx.fxml;
     opens aleksic.Komponente to javafx.graphics, javafx.fxml;
     opens aleksic.TransferObjekat to javafx.graphics, javafx.fxml;
-    opens aleksic.Views to javafx.graphics, javafx.fxml;
+    opens aleksic.Pogledi to javafx.graphics, javafx.fxml;
     opens aleksic to javafx.graphics, javafx.fxml;
 }

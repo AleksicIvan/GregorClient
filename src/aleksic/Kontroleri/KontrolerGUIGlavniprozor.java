@@ -354,7 +354,7 @@ public class KontrolerGUIGlavniprozor extends OpstiGUIKontroler {
         toi.nazivOperacije = nazivSO;
 
         try {
-            System.out.println("Saljem TOI iz Kontroler GUI Logina");
+            System.out.println("Saljem TOI iz Kontroler GUI Glavni");
             out.reset();
             out.writeObject(toi);
 

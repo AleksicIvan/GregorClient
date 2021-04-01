@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class FXMLCardTest implements Initializable {
+public class FXMLCard implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {

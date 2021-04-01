@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class CardComponent extends VBox {
-    FXMLCardTest fxmlCardTest;
+    FXMLCard fxmlCardTest;
     ViewManager vm;
     Karta trenutnaKarta;
     KontrolerGUIGlavniprozor guiKontroler;
@@ -35,7 +35,7 @@ public class CardComponent extends VBox {
 
     public CardComponent() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-                "FXMLCardTest.fxml"));
+                "FXMLCard.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
